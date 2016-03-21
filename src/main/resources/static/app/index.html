@@ -1,0 +1,581 @@
+
+<!DOCTYPE HTML>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<title>The Eyecatcher</title>
+	<link rel="stylesheet" href="css/all.css">
+</head>
+<body  ng-controller="AppController">
+	<div class="container-fluid">
+		<header id="header">
+			<table class="heading">
+				<tr>
+					<td>
+						<div class="logo"><a href="#"><img src="images/logo.png" height="21" width="186" alt="The Eyecatcher"></a></div>
+					</td>
+					<td>
+						<dl class="info">
+							<dt>Today</dt>
+								<dd>9 anomalies have happened</dd>
+							<dt>Last anomaly</dt>
+								<dd>happened on 21st February at 18:30</dd>
+						</dl>
+					</td>
+					<td>
+						<span class="filter-head">filter anomalies</span>
+						<div class="filters-box">
+							<ul class="filters-list">
+								<li>
+									<a class="filter-now" href="#">happening now <i class="i-close"></i></a>
+								</li>
+								<li>
+									<a class="filter-day" href="#">last 24 hours <i class="i-close"></i></a>
+								</li>
+								<li>
+									<a class="filter-face active" href="#">face detection <i class="i-close"></i></a>
+								</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</header>
+		<div id="main" role="main">
+			<div class="cams-block">		<!-- add classes "filtered","now","day","face" -->
+				<div class="row row01">
+					<div class="cam-box">
+						<div class="cam-frame ">
+							<a href="#popup01" class="cam-holder lightbox" style="background-image:url({{streams.stream[0].image}})">
+								<div class="cam-descript">
+								<!--	<div class="ico-box">
+										<i class="i-hour"></i>
+									</div>-->
+									<div class="cam-info">
+										<span class="source" >{{streams.stream[0].name}}</span>
+										<!--<span class="time">Anomaly detected at 18:30 (21.03)</span>-->
+									</div>
+								</div>
+							</a>
+							<a href="#" class="i-sign-out"></a>
+						</div>
+					</div>
+					<div class="cam-box">
+						<div class="cam-frame">
+							<a href="#popup02" class="cam-holder lightbox" style="background-image:url({{streams.stream[1].image}})">
+								<div class="cam-descript">
+									<div class="cam-info">
+										<span class="source" >{{streams.stream[1].name}}</span>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="i-sign-out"></a>
+						</div>
+					</div>
+					<div class="cam-box">
+						<div class="cam-frame">
+							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[2].image}})">
+								<div class="cam-descript">
+									<div class="cam-info">
+										<span class="source" >{{streams.stream[2].name}}</span>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="i-sign-out"></a>
+						</div>
+					</div>
+				</div>
+				<div class="row row02">
+					<div class="cam-box">
+						<div class="cam-frame">
+							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[3].image}})">
+								<div class="cam-descript">
+									<div class="cam-info">
+										<span class="source" >{{streams.stream[3].name}}</span>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="i-sign-out"></a>
+						</div>
+					</div>
+					<div class="cam-box">
+						<!--<div class="cam-frame anomaly anomaly-now anomaly-face">-->
+						<div class="cam-frame">
+							<a href="#popup03" class="cam-holder" style="background-image:url({{streams.stream[4].image}})">
+								<div class="cam-descript">
+									<!--<div class="ico-box">
+										<i class="i-person"></i>
+										<i class="i-hour"></i>
+									</div>-->
+									<div class="cam-info">
+										<span class="source" >{{streams.stream[4].name}}</span>
+									<!--	<span class="time">Anomaly detected at 18:30 (21.03)</span>-->
+									</div>
+								</div>
+							</a>
+							<a href="#" class="i-sign-out"></a>
+						</div>
+					</div>
+					<div class="cam-box">
+						<div class="cam-frame">
+							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[5].image}})">
+								<div class="cam-descript">
+									<div class="cam-info">
+										<span class="source" >{{streams.stream[5].name}}</span>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="i-sign-out"></a>
+						</div>
+					</div>
+					<div class="cam-box">
+						<div class="cam-frame">
+							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[6].image}})">
+								<div class="cam-descript">
+									<div class="cam-info">
+										<span class="source" >{{streams.stream[6].name}}</span>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="i-sign-out"></a>
+						</div>
+					</div>
+				</div>
+				<div class="row row03">
+					<div class="cam-box">
+						<div class="cam-frame">
+							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[7].image}})">
+								<div class="cam-descript">
+									<div class="cam-info">
+										<span class="source" >{{streams.stream[7].name}}</span>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="i-sign-out"></a>
+						</div>
+					</div>
+					<div class="cam-box">
+						<div class="cam-frame">
+							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[8].image}})">
+								<div class="cam-descript">
+									<div class="cam-info">
+										<span class="source" >{{streams.stream[8].name}}</span>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="i-sign-out"></a>
+						</div>
+					</div>
+					<div class="cam-box">
+						<div class="cam-frame">
+							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[9].image}})">
+								<div class="cam-descript">
+									<div class="cam-info">
+										<span class="source" >{{streams.stream[9].name}}</span>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="i-sign-out"></a>
+						</div>
+					</div>
+				</div>
+				<div class="empty-message">
+					<span class="empty-text">no anomalies detected <br>in the last 24 hours</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popup-holder">
+		<div id="popup01" class="lightbox">
+			<div class="anomaly-block">
+				<div class="anomaly-content">
+					<div class="anomaly-heading">
+						<div class="heading">
+							<div class="heading-row">
+								<span class="cam-name">RAILWAY CAM 01</span>
+								<a href="#" class="btn-out"></a>
+							</div>
+							<div class="heading-row">
+								<span class="info-for">Showing anomalies for</span>
+								<span class="date">
+									<input type="text" name="date01" id="date01" placeholder="21.03.2016 (Today)">
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="scrollable-area">
+						<div class="anomaly-holder">
+							<ul class="anomaly-list">
+								<li>
+									<span class="anomaly-row">
+										<span class="item"><a href="#" class="time-item">Time</a></span>
+										<span class="item">TYPE</span>
+										<span class="item">Preview</span>
+									</span>
+								</li>
+								<li class="active">
+									<a href="#" class="anomaly-row">
+										<span class="item">05:32</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">05:47</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">07:15-07:40</span>
+										<span class="item">Object</span>
+										<span class="item">
+											<span class="img-frame">
+												<img src="images/photo-02.jpg" alt="image description">
+												<img src="images/photo-02.jpg" alt="image description">
+												<img src="images/photo-02.jpg" alt="image description">
+											</span>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">18:00</span>
+										<span class="item">Face<i class="i-person-sm"></i></span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">18:30-19:00</span>
+										<span class="item">Object + Face<i class="i-person-sm"></i></span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="anomaly-view">
+					<div class="single-box">
+						<img src="images/photo-01.jpg" alt="image description">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="popup02" class="lightbox">
+			<div class="anomaly-block">
+				<div class="anomaly-content">
+					<div class="anomaly-heading">
+						<div class="heading">
+							<div class="heading-row">
+								<span class="cam-name">RAILWAY CAM 01</span>
+								<a href="#" class="btn-out"></a>
+							</div>
+							<div class="heading-row">
+								<span class="info-for">Showing anomalies for</span>
+								<span class="date">
+									<input type="text" name="date02" id="date02" placeholder="21.03.2016 (Today)">
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="anomaly-view">
+					<div class="no-anomaly" style="background-image:url(images/cam-01.jpg)">
+						<div class="no-anomaly-holder">
+							<span class="message">NO NEW ANOMALIES for <br>this webcam TODAY</span>
+							<span class="add-info">You can still view archived anomalies for the previous days</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="popup03" class="lightbox">
+			<div class="anomaly-block">
+				<div class="anomaly-content">
+					<div class="anomaly-heading">
+						<div class="heading">
+							<div class="heading-row">
+								<span class="cam-name">RAILWAY CAM 01</span>
+								<a href="#" class="btn-out"></a>
+							</div>
+							<div class="heading-row">
+								<span class="info-for">Showing anomalies for</span>
+								<span class="date">
+									<input type="text" name="date03" id="date03" placeholder="21.03.2016 (Today)">
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="scrollable-area">
+						<div class="anomaly-holder">
+							<ul class="anomaly-list">
+								<li>
+									<span class="anomaly-row">
+										<span class="item"><a href="#" class="time-item">Time</a></span>
+										<span class="item">TYPE</span>
+										<span class="item">Preview</span>
+									</span>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">05:32</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">05:47</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li class="active">
+									<a href="#" class="anomaly-row">
+										<span class="item">07:15-07:40</span>
+										<span class="item">Object</span>
+										<span class="item">
+											<span class="img-frame">
+												<img src="images/photo-02.jpg" alt="image description">
+												<img src="images/photo-02.jpg" alt="image description">
+												<img src="images/photo-02.jpg" alt="image description">
+											</span>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">18:00</span>
+										<span class="item">Face<i class="i-person-sm"></i></span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">18:30-19:00</span>
+										<span class="item">Object + Face<i class="i-person-sm"></i></span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="anomaly-row">
+										<span class="item">20:03</span>
+										<span class="item">Object</span>
+										<span class="item"><img src="images/photo-02.jpg" height="39" width="68" alt="image description"></span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="anomaly-view">
+					<div class="several-box">
+						<div class="fade-gallery">
+							<div class="fade-gmask">
+								<div class="fade-slideset">
+									<div class="fade-slide">
+										<img src="images/photo-01.jpg" alt="image description">
+									</div>
+									<div class="fade-slide">
+										<img src="images/photo-01.jpg" alt="image description">
+									</div>
+									<div class="fade-slide">
+										<img src="images/photo-01.jpg" alt="image description">
+									</div>
+									<div class="fade-slide">
+										<img src="images/photo-01.jpg" alt="image description">
+									</div>
+									<div class="fade-slide">
+										<img src="images/photo-01.jpg" alt="image description">
+									</div>
+									<div class="fade-slide">
+										<img src="images/photo-01.jpg" alt="image description">
+									</div>
+									<div class="fade-slide">
+										<img src="images/photo-01.jpg" alt="image description">
+									</div>
+									<div class="fade-slide">
+										<img src="images/photo-01.jpg" alt="image description">
+									</div>
+								</div>
+							</div>
+							<div class="carousel">
+								<a href="#" class="carousel-opener">Open</a>
+								<a class="carousel-btn-prev" href="#">&lt;</a>
+								<a class="carousel-btn-next" href="#">&gt;</a>
+								<div class="carousel-gmask">
+									<div class="pagination">
+										<ul class="carousel-slideset">
+											<li class="slide active">
+												<a href="#">
+													<img src="images/photo-03.jpg" alt="image description">
+													<span class="time-slide"><i class="i-time"></i>07:15</span>
+												</a>
+											</li>
+											<li class="slide">
+												<a href="#">
+													<img src="images/photo-03.jpg" alt="image description">
+													<span class="time-slide"><i class="i-time"></i>07:16</span>
+												</a>
+											</li>
+											<li class="slide">
+												<a href="#">
+													<img src="images/photo-03.jpg" alt="image description">
+													<span class="time-slide"><i class="i-time"></i>07:17</span>
+												</a>
+											</li>
+											<li class="slide">
+												<a href="#">
+													<img src="images/photo-03.jpg" alt="image description">
+													<span class="time-slide"><i class="i-time"></i>07:20</span>
+												</a>
+											</li>
+											<li class="slide">
+												<a href="#">
+													<img src="images/photo-03.jpg" alt="image description">
+													<span class="time-slide"><i class="i-time"></i>07:21</span>
+												</a>
+											</li>
+											<li class="slide">
+												<a href="#">
+													<img src="images/photo-03.jpg" alt="image description">
+													<span class="time-slide"><i class="i-time"></i>07:25</span>
+												</a>
+											</li>
+											<li class="slide">
+												<a href="#">
+													<img src="images/photo-03.jpg" alt="image description">
+													<span class="time-slide"><i class="i-time"></i>07:26</span>
+												</a>
+											</li>
+											<li class="slide">
+												<a href="#">
+													<img src="images/photo-03.jpg" alt="image description">
+													<span class="time-slide"><i class="i-time"></i>07:27</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../lib/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../lib/bower_components/angular-resource/angular-resource.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="controllers.js"></script>
+	<script type="text/javascript" src="services.js"></script>
+	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="js/jquery.fancybox.js"></script>
+	<script src="js/jquery-main.js"></script>
+	<script src="js/jcf.js"></script>
+	<script src="js/jcf.scrollable.js"></script>
+	<script src="js/jquery.carousel.js"></script>	<!-- carousel gallery -->
+	<script src="js/jquery.slideshow.js"></script>	<!-- fade gallery -->
+	<script type="text/javascript">
+		// replace custom forms
+		jcf.lib.domReady(function(){
+			jcf.customForms.replaceAll();
+		});
+	</script>
+</body>
+</html>

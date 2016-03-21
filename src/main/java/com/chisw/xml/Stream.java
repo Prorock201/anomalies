@@ -1,11 +1,11 @@
 
 package com.chisw.xml;
 
-import javax.annotation.Generated;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -37,18 +37,15 @@ import javax.xml.bind.annotation.XmlType;
     "image"
 })
 @XmlRootElement(name = "Stream")
-@Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
 public class Stream {
 
     @XmlElement(name = "ID", required = true)
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     protected String id;
     @XmlElement(name = "Name", required = true)
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     protected String name;
     @XmlElement(name = "Image", required = true)
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
-    protected Image image;
+    @XmlSchemaType(name = "anyURI")
+    protected String image;
 
     /**
      * Gets the value of the id property.
@@ -58,7 +55,6 @@ public class Stream {
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     public String getID() {
         return id;
     }
@@ -71,7 +67,6 @@ public class Stream {
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     public void setID(String value) {
         this.id = value;
     }
@@ -84,7 +79,6 @@ public class Stream {
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     public String getName() {
         return name;
     }
@@ -97,7 +91,6 @@ public class Stream {
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     public void setName(String value) {
         this.name = value;
     }
@@ -107,11 +100,10 @@ public class Stream {
      * 
      * @return
      *     possible object is
-     *     {@link Image }
+     *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -120,12 +112,20 @@ public class Stream {
      * 
      * @param value
      *     allowed object is
-     *     {@link Image }
+     *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
-    public void setImage(Image value) {
+    public void setImage(String value) {
         this.image = value;
     }
 
+
+    @Override
+    public String toString() {
+        return "Stream{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                '}';
+    }
 }

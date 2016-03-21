@@ -25,6 +25,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _ID_QNAME = new QName("", "ID");
+    private final static QName _Image_QNAME = new QName("", "Image");
     private final static QName _Name_QNAME = new QName("", "Name");
 
     /**
@@ -51,14 +52,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Image }
-     * 
-     */
-    public Image createImage() {
-        return new Image();
-    }
-
-    /**
      * Create an instance of {@link Anomalies }
      * 
      */
@@ -73,6 +66,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "ID")
     public JAXBElement<String> createID(String value) {
         return new JAXBElement<String>(_ID_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "Image")
+    public JAXBElement<String> createImage(String value) {
+        return new JAXBElement<String>(_Image_QNAME, String.class, null, value);
     }
 
     /**

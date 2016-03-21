@@ -3,7 +3,6 @@ package com.chisw.xml;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Generated;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -42,19 +41,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "anomalies"
 })
 @XmlRootElement(name = "LSResponse")
-@Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
 public class LSResponse {
 
     @XmlElement(name = "Stream", required = true)
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     protected List<Stream> stream;
     @XmlElement(name = "Anomalies", required = true)
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     protected Anomalies anomalies;
     @XmlAttribute(name = "type", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NCName")
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     protected String type;
 
     /**
@@ -79,7 +74,6 @@ public class LSResponse {
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     public List<Stream> getStream() {
         if (stream == null) {
             stream = new ArrayList<Stream>();
@@ -95,7 +89,6 @@ public class LSResponse {
      *     {@link Anomalies }
      *     
      */
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     public Anomalies getAnomalies() {
         return anomalies;
     }
@@ -108,7 +101,6 @@ public class LSResponse {
      *     {@link Anomalies }
      *     
      */
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     public void setAnomalies(Anomalies value) {
         this.anomalies = value;
     }
@@ -121,7 +113,6 @@ public class LSResponse {
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     public String getType() {
         return type;
     }
@@ -134,9 +125,17 @@ public class LSResponse {
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2016-03-21T11:50:12+02:00", comments = "JAXB RI v2.2.8-b130911.1802")
     public void setType(String value) {
         this.type = value;
     }
 
+
+    @Override
+    public String toString() {
+        return "LSResponse{" +
+                "stream=" + stream +
+                ", anomalies=" + anomalies +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }
