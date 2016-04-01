@@ -1,6 +1,7 @@
 
 package com.chisw.xml;
 
+import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -40,7 +41,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Stream {
 
     @XmlElement(name = "ID", required = true)
-    protected String id;
+    protected BigInteger id;
     @XmlElement(name = "Name", required = true)
     protected String name;
     @XmlElement(name = "Image", required = true)
@@ -52,10 +53,10 @@ public class Stream {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public String getID() {
+    public BigInteger getID() {
         return id;
     }
 
@@ -64,10 +65,10 @@ public class Stream {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public void setID(String value) {
+    public void setID(BigInteger value) {
         this.id = value;
     }
 
@@ -119,13 +120,4 @@ public class Stream {
         this.image = value;
     }
 
-
-    @Override
-    public String toString() {
-        return "Stream{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", image='" + image + '\'' +
-                '}';
-    }
 }

@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element ref="{}Summary"/>
  *         &lt;element ref="{}Stream" maxOccurs="unbounded"/>
  *         &lt;element ref="{}Anomalies"/>
  *       &lt;/sequence>
@@ -37,12 +38,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "summary",
     "stream",
     "anomalies"
 })
 @XmlRootElement(name = "LSResponse")
 public class LSResponse {
 
+    @XmlElement(name = "Summary", required = true)
+    protected String summary;
     @XmlElement(name = "Stream", required = true)
     protected List<Stream> stream;
     @XmlElement(name = "Anomalies", required = true)
@@ -51,6 +55,30 @@ public class LSResponse {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NCName")
     protected String type;
+
+    /**
+     * Gets the value of the summary property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSummary() {
+        return summary;
+    }
+
+    /**
+     * Sets the value of the summary property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSummary(String value) {
+        this.summary = value;
+    }
 
     /**
      * Gets the value of the stream property.
@@ -129,13 +157,4 @@ public class LSResponse {
         this.type = value;
     }
 
-
-    @Override
-    public String toString() {
-        return "LSResponse{" +
-                "stream=" + stream +
-                ", anomalies=" + anomalies +
-                ", type='" + type + '\'' +
-                '}';
-    }
 }

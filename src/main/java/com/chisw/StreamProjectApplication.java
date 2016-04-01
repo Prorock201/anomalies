@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 @SpringBootApplication
-public class StreamProjectApplication  {
+public class StreamProjectApplication {
 
 
 
@@ -23,7 +26,9 @@ public class StreamProjectApplication  {
 	{
 
 		SpringApplication.run(StreamProjectApplication.class, args);
+
 	}
+
 }
 
 /*
@@ -41,5 +46,5 @@ public class StreamProjectApplication extends SpringBootServletInitializer {
 		SpringApplication.run(StreamProjectApplication.class, args);
 	}
 }
-*/
 
+*/

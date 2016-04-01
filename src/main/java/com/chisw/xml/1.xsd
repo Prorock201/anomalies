@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="LSResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Summary"/>
+                <xs:element maxOccurs="unbounded" ref="Stream"/>
+                <xs:element ref="Anomalies"/>
+            </xs:sequence>
+            <xs:attribute name="type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Summary" type="xs:string"/>
+    <xs:element name="Stream">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ID"/>
+                <xs:element ref="Name"/>
+                <xs:element ref="Image"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ID" type="xs:integer"/>
+    <xs:element name="Name" type="xs:string"/>
+    <xs:element name="Image" type="xs:anyURI"/>
+    <xs:element name="Anomalies">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Anomaly"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Anomaly">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="StreamId"/>
+                <xs:element ref="Img"/>
+                <xs:element ref="Date"/>
+                <xs:element ref="Width"/>
+                <xs:element ref="Height"/>
+                <xs:element ref="Desc"/>
+                <xs:element ref="BoundingX"/>
+                <xs:element ref="BoundingY"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="StreamId" type="xs:NMTOKEN"/>
+    <xs:element name="Img" type="xs:anyURI"/>
+    <xs:element name="Date" type="xs:string"/>
+    <xs:element name="Width" type="xs:integer"/>
+    <xs:element name="Height" type="xs:integer"/>
+    <xs:element name="Desc" type="xs:string"/>
+    <xs:element name="BoundingX" type="xs:integer"/>
+    <xs:element name="BoundingY" type="xs:integer"/>
+</xs:schema>

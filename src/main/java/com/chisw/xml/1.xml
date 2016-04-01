@@ -1,0 +1,133 @@
+<LSResponse type="getStreamAnomalies">
+    <Summary>
+        Today 3 anamalies has been detectedLast Anomaly - 2 hours ago
+    </Summary>
+    <Stream>
+        <ID>1</ID>
+        <Name>California San Diego street</Name>
+        <Image>
+            http://captiveonline.azurewebsites.net/images/csds.jpg
+        </Image>
+    </Stream>
+    <Stream>
+        <ID>2</ID>
+        <Name>Moscow city mall</Name>
+        <Image>
+            http://captiveonline.azurewebsites.net/images/mcm.jpg
+        </Image>
+    </Stream>
+    <Stream>
+        <ID>3</ID>
+        <Name>Moscow city mall2</Name>
+        <Image>
+            http://captiveonline.azurewebsites.net/images/mcm2.jpg
+        </Image>
+    </Stream>
+    <Stream>
+        <ID>4</ID>
+        <Name>Montana city road</Name>
+        <Image>
+            http://captiveonline.azurewebsites.net/images/mcr.jpg
+        </Image>
+    </Stream>
+    <Stream>
+        <ID>5</ID>
+        <Name>Shoe store</Name>
+        <Image>
+            http://captiveonline.azurewebsites.net/images/ss.jpg
+        </Image>
+    </Stream>
+    <Stream>
+        <ID>6</ID>
+        <Name>Gallery</Name>
+        <Image>
+            http://captiveonline.azurewebsites.net/images/g.jpg
+        </Image>
+    </Stream>
+    <Stream>
+        <ID>7</ID>
+        <Name>England street</Name>
+        <Image>
+            http://captiveonline.azurewebsites.net/images/es.jpg
+        </Image>
+    </Stream>
+    <Stream>
+        <ID>8</ID>
+        <Name>japan street</Name>
+        <Image>
+            http://captiveonline.azurewebsites.net/images/js.jpg
+        </Image>
+    </Stream>
+    <Anomalies>
+        <Anomaly>
+            <StreamId>2</StreamId>
+            <Img>...</Img>
+            <Date>31/03/2016 18:05</Date>
+            <Width>10</Width>
+            <Height>5</Height>
+            <Desc>People identided</Desc>
+            <BoundingX>10</BoundingX>
+            <BoundingY>20</BoundingY>
+        </Anomaly>
+        <Anomaly>
+            <StreamId>2</StreamId>
+            <Img>
+                http://captiveonline.azurewebsites.net/images/mcm.jpg
+            </Img>
+            <Date>31/03/2016 12:05</Date>
+            <Width>10</Width>
+            <Height>5</Height>
+            <Desc>People identided</Desc>
+            <BoundingX>10</BoundingX>
+            <BoundingY>20</BoundingY>
+        </Anomaly>
+        <Anomaly>
+            <StreamId>3</StreamId>
+            <Img>
+                http://captiveonline.azurewebsites.net/images/mcm2.jpg
+            </Img>
+            <Date>31/03/2016 12:05</Date>
+            <Width>10</Width>
+            <Height>5</Height>
+            <Desc>People identided</Desc>
+            <BoundingX>10</BoundingX>
+            <BoundingY>20</BoundingY>
+        </Anomaly>
+        <Anomaly>
+            <StreamId>Id6</StreamId>
+            <Img>
+                http://captiveonline.azurewebsites.net/images/g.jpg
+            </Img>
+            <Date>31/03/2016 12:10</Date>
+            <Width>10</Width>
+            <Height>5</Height>
+            <Desc>People identided</Desc>
+            <BoundingX>10</BoundingX>
+            <BoundingY>20</BoundingY>
+        </Anomaly>
+        <Anomaly>
+            <StreamId>6</StreamId>
+            <Img>
+                http://captiveonline.azurewebsites.net/images/g.jpg
+            </Img>
+            <Date>31/03/2016 01:05</Date>
+            <Width>10</Width>
+            <Height>5</Height>
+            <Desc>People identided</Desc>
+            <BoundingX>10</BoundingX>
+            <BoundingY>20</BoundingY>
+        </Anomaly>
+        <Anomaly>
+            <StreamId>6</StreamId>
+            <Img>
+                http://captiveonline.azurewebsites.net/images/g.jpg
+            </Img>
+            <Date>31/03/2016 01:00</Date>
+            <Width>10</Width>
+            <Height>5</Height>
+            <Desc>People identided</Desc>
+            <BoundingX>10</BoundingX>
+            <BoundingY>20</BoundingY>
+        </Anomaly>
+    </Anomalies>
+</LSResponse>
