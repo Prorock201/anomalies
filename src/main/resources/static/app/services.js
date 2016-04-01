@@ -9,3 +9,4 @@
     StreamFactory.$inject = ['$resource'];
     angular.module("myApp.services").factory("Stream", StreamFactory);
 }(angular));
+
