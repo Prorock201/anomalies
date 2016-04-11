@@ -1,0 +1,128 @@
+{
+  "summaryToday":"Today 3 anamalies has been detected",
+  "summaryLast":"Last Anomaly - 2 hours ago",
+  "streams":[
+    {
+      "id":2,
+      "name":"Moscow city mall",
+      "image":"http://blinkedb.azurewebsites.net/images/moscow%20mall.jpg",
+      "anomalies":[
+        {
+          "streamId":"2",
+          "img":"http://captiveonline.azurewebsites.net/images/mcm.jpg",
+          "date":"31/03/2016 18:05",
+          "width":10,
+          "height":5,
+          "desc":"People identided",
+          "boundingX":345,
+          "boundingY":30
+        },
+        {
+          "streamId":"2",
+          "img":"http://captiveonline.azurewebsites.net/images/g.jpg",
+          "date":"31/03/2016 12:05",
+          "width":10,
+          "height":5,
+          "desc":"People identided",
+          "boundingX":67,
+          "boundingY":250
+        }
+      ],
+      "detectedPerson":true,
+      "hotAnomaly":false
+    },
+    {
+      "id":4,
+      "name":"Montana city road",
+      "image":"http://blinkedb.azurewebsites.net/images/montana.jpg",
+      "anomalies":[
+      ],
+      "detectedPerson":false,
+      "hotAnomaly":false
+    },
+    {
+      "id":6,
+      "name":"Gallery",
+      "image":"http://blinkedb.azurewebsites.net/images/gallery.jpg",
+      "anomalies":[
+        {
+          "streamId":"6",
+          "img":"http://captiveonline.azurewebsites.net/images/g.jpg",
+          "date":"31/03/2016 12:10",
+          "width":10,
+          "height":5,
+          "desc":"People identided",
+          "boundingX":123,
+          "boundingY":20
+        },
+        {
+          "streamId":"6",
+          "img":"http://captiveonline.azurewebsites.net/images/g.jpg",
+          "date":"31/03/2016 01:05",
+          "width":10,
+          "height":5,
+          "desc":"People identided",
+          "boundingX":50,
+          "boundingY":200
+        },
+        {
+          "streamId":"6",
+          "img":"http://captiveonline.azurewebsites.net/images/g.jpg",
+          "date":"31/03/2016 01:00",
+          "width":10,
+          "height":5,
+          "desc":"People identided",
+          "boundingX":123,
+          "boundingY":300
+        }
+      ],
+      "detectedPerson":true,
+      "hotAnomaly":false
+    },
+    {
+      "id":8,
+      "name":"japan street",
+      "image":"http://blinkedb.azurewebsites.net/images/japan%20market.jpg",
+      "anomalies":[
+      ],
+      "detectedPerson":false,
+      "hotAnomaly":false
+    },
+    {
+      "id":9,
+      "name":"wales",
+      "image":"http://blinkedb.azurewebsites.net/images/whales.jpg",
+      "anomalies":[
+      ],
+      "detectedPerson":false,
+      "hotAnomaly":false
+    },
+    {
+      "id":16,
+      "name":"building entrance",
+      "image":"http://blinkedb.azurewebsites.net/images/building.jpg",
+      "anomalies":[
+      ],
+      "detectedPerson":false,
+      "hotAnomaly":false
+    },
+    {
+      "id":17,
+      "name":"square1",
+      "image":"http://blinkedb.azurewebsites.net/images/square.jpg",
+      "anomalies":[
+      ],
+      "detectedPerson":false,
+      "hotAnomaly":false
+    },
+    {
+      "id":19,
+      "name":"mall1",
+      "image":"http://blinkedb.azurewebsites.net/images/mall.jpg",
+      "anomalies":[
+      ],
+      "detectedPerson":false,
+      "hotAnomaly":false
+    }
+  ]
+}
