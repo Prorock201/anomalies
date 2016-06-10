@@ -518,12 +518,14 @@ table {
 	overflow: hidden;
 	height: 100%;
 	position: relative;
+	overflow-x:scroll;
 }
 
 .single-box img {
 	vertical-align: top;
 	width: 100%;
 	height: auto;
+
 }
 
 .anomaly-heading {

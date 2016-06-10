@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{}ID"/>
  *         &lt;element ref="{}Name"/>
  *         &lt;element ref="{}Image"/>
+ *         &lt;element ref="{}URL"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,7 +36,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "id",
     "name",
-    "image"
+    "image",
+    "url"
 })
 @XmlRootElement(name = "Stream")
 public class Stream {
@@ -47,6 +49,9 @@ public class Stream {
     @XmlElement(name = "Image", required = true)
     @XmlSchemaType(name = "anyURI")
     protected String image;
+    @XmlElement(name = "URL", required = true)
+    @XmlSchemaType(name = "anyURI")
+    protected String url;
 
     /**
      * Gets the value of the id property.
@@ -120,4 +125,11 @@ public class Stream {
         this.image = value;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String value) {
+        this.url = url;
+    }
 }

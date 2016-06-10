@@ -1,7 +1,6 @@
 package com.chisw.controller;
 
-import com.chisw.xml.JsonToFrontEnd;
-import com.chisw.xml.LSResponse;
+import com.chisw.dto.JsonToFrontEnd;
 import com.chisw.xml.Parse;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,8 @@ public class StreamController {
     @RequestMapping(value = "/streams", method = RequestMethod.GET, produces="application/json")
     @ResponseBody
     public JsonToFrontEnd getStreams(){
-        return Parse.parseURl();
+        JsonToFrontEnd jsonToFrontEnd = Parse.parseURl();
+        return jsonToFrontEnd;
     }
 
 

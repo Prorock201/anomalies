@@ -23,17 +23,17 @@
 						</dl>
 					</td>
 					<td>
-						<span class="filter-head">filter anomalies</span>
+						<!--<span class="filter-head">filter anomalies</span>-->
 						<div class="filters-box">
 							<ul class="filters-list">
 								<li>
-									<a class="filter-now" href="#">happening now <i class="i-close"></i></a>
+									<!--<a class="filter-now" href="#">happening now <i class="i-close"></i></a>-->
 								</li>
 								<li>
-									<a class="filter-day" href="#">last 24 hours <i class="i-close"></i></a>
+									<!--<a class="filter-day" href="#">last 24 hours <i class="i-close"></i></a>-->
 								</li>
 								<li>
-									<a class="filter-face" href="#">face detection <i class="i-close"></i></a>
+									<!--<a class="filter-face" href="#">face detection <i class="i-close"></i></a>-->
 								</li>
 							</ul>
 						</div>
@@ -44,140 +44,25 @@
 		<div id="main" role="main">
 			<div class="cams-block">		<!-- add classes "filtered","now","day","face" -->
 				<div class="row row01">
-					<div class="cam-box">
-						<div class="cam-frame ">
-							<a href ng-click="" class="cam-holder" style="background-image:url({{streams.stream[0].image}})">
+					<div class="cam-box" ng-repeat="stream in streams.streams">
+						<div class="cam-frame">
+							<a ng-href="#popup01" ng-click="selectStream(stream)"  class="cam-holder lightbox" style="background-image:url({{stream.image}})">
 								<div class="cam-descript">
-								<!--	<div class="ico-box">
-										<i class="i-hour"></i>
-									</div>-->
+									<div class="ico-box">
+										<!--<i class="i-hour"></i>-->
+										<i class="i-person" ng-show="stream.detectedPerson==true" ></i>
+									</div>
 									<div class="cam-info">
-										<span class="source" >{{streams.stream[0].name}}</span>
+										<span class="source" >{{stream.name}}</span>
+
 										<!--<span class="time">Anomaly detected at 18:30 (21.03)</span>-->
 									</div>
 								</div>
 							</a>
-							<a href="#" class="i-sign-out"></a>
+							<a ng-href="{{stream.cameraLink}}" target="_blank" class="i-sign-out"></a>
 						</div>
 					</div>
-					<div class="cam-box">
-						<div class="cam-frame">
-							<a href="#popup03" class="cam-holder lightbox" style="background-image:url({{streams.stream[1].image}})">
-								<div class="cam-descript">
-									<div class="cam-info">
-										<span class="source" >{{streams.stream[1].name}}</span>
-									</div>
-								</div>
-							</a>
-							<a href="#" class="i-sign-out"></a>
-						</div>
-					</div>
-					<div class="cam-box">
-						<div class="cam-frame">
-							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[2].image}})">
-								<div class="cam-descript">
-									<div class="cam-info">
-										<span class="source" >{{streams.stream[2].name}}</span>
-									</div>
-								</div>
-							</a>
-							<a href="#" class="i-sign-out"></a>
-						</div>
-					</div>
-				</div>
-				<div class="row row02">
-					<div class="cam-box">
-						<div class="cam-frame">
-							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[3].image}})">
-								<div class="cam-descript">
-									<div class="cam-info">
-										<span class="source" >{{streams.stream[3].name}}</span>
-									</div>
-								</div>
-							</a>
-							<a href="#" class="i-sign-out"></a>
-						</div>
-					</div>
-					<div class="cam-box">
-						<!--<div class="cam-frame anomaly anomaly-now anomaly-face">-->
-						<div class="cam-frame">
-							<a href="#popup03" class="cam-holder" style="background-image:url({{streams.stream[4].image}})">
-								<div class="cam-descript">
-									<!--<div class="ico-box">
-										<i class="i-person"></i>
-										<i class="i-hour"></i>
-									</div>-->
-									<div class="cam-info">
-										<span class="source" >{{streams.stream[4].name}}</span>
-									<!--	<span class="time">Anomaly detected at 18:30 (21.03)</span>-->
-									</div>
-								</div>
-							</a>
-							<a href="#" class="i-sign-out"></a>
-						</div>
-					</div>
-					<div class="cam-box">
-						<div class="cam-frame">
-							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[5].image}})">
-								<div class="cam-descript">
-									<div class="cam-info">
-										<span class="source" >{{streams.stream[5].name}}</span>
-									</div>
-								</div>
-							</a>
-							<a href="#" class="i-sign-out"></a>
-						</div>
-					</div>
-					<div class="cam-box">
-						<div class="cam-frame">
-							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[6].image}})">
-								<div class="cam-descript">
-									<div class="cam-info">
-										<span class="source" >{{streams.stream[6].name}}</span>
-									</div>
-								</div>
-							</a>
-							<a href="#" class="i-sign-out"></a>
-						</div>
-					</div>
-				</div>
-				<div class="row row03">
-					<div class="cam-box">
-						<div class="cam-frame">
-							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[7].image}})">
-								<div class="cam-descript">
-									<div class="cam-info">
-										<span class="source" >{{streams.stream[7].name}}</span>
-									</div>
-								</div>
-							</a>
-							<a href="#" class="i-sign-out"></a>
-						</div>
-					</div>
-					<div class="cam-box">
-						<div class="cam-frame">
-							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[8].image}})">
-								<div class="cam-descript">
-									<div class="cam-info">
-										<span class="source" >{{streams.stream[8].name}}</span>
-									</div>
-								</div>
-							</a>
-							<a href="#" class="i-sign-out"></a>
-						</div>
-					</div>
-					<div class="cam-box">
-						<div class="cam-frame">
-							<a href="#" class="cam-holder" style="background-image:url({{streams.stream[9].image}})">
-								<div class="cam-descript">
-									<div class="cam-info">
-										<span class="source" >{{streams.stream[9].name}}</span>
-									</div>
-								</div>
-							</a>
-							<a href="#" class="i-sign-out"></a>
-						</div>
-					</div>
+
 				</div>
 				<div class="empty-message">
 					<span class="empty-text">no anomalies detected <br>in the last 24 hours</span>
@@ -186,8 +71,70 @@
 		</div>
 	</div>
 
+	<div class="popup-holder">
+		<div id="popup01" class="lightbox">
+			<div class="anomaly-block">
+				<div class="anomaly-content">
+					<div class="anomaly-heading">
+						<div class="heading">
+							<div class="heading-row">
+								<span class="cam-name">{{selectedStream.name}}</span>
+								<a ng-href="{{selectedStream.cameraLink}}" target="_blank"  class="btn-out"></a>
+							</div>
+							<div class="heading-row">
+								<span class="info-for">Showing anomalies for</span>
+								<span class="date">
+									<input type="text" name="date01" id="date01" placeholder="21.03.2016 (Today)">
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="scrollable-area">
+						<div class="anomaly-holder">
+							<ul class="anomaly-list">
+								<li>
+									<span class="anomaly-row">
+										<span class="item"><a  class="time-item">Time</a></span>
+										<span class="item">TYPE</span>
+										<span class="item">Preview</span>
+									</span>
+								</li>
+								<li>
+									<div ng-repeat="anomaly in selectedStream.anomalies">
+										<a href="" ng-click="changeImage(anomaly)" class="anomaly-row">
+											<span class="item">{{anomaly.date}}</span>
+											<span class="item">{{anomaly.desc}}</span>
+											<span class="item"><img ng-src="{{anomaly.img}}" height="39" width="68" alt="image description"></span>
+										</a>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="anomaly-view">
+					<div class="single-box" ng-hide="$scope.image">
+						<img ng-src="{{image}}" >
+
+					</div>
+					<div class="no-anomaly" ng-show="$scope.image">
+						<div class="no-anomaly-holder">
+							<span class="message">NO NEW ANOMALIES for <br>this webcam TODAY</span>
+							<span class="add-info">You can still view archived anomalies for the previous days</span>
+						</div>
+					</div>
+					<svg-circle></svg-circle>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<script type="text/javascript" src="../lib/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../lib/bower_components/angular-resource/angular-resource.min.js"></script>
+	<script type="text/javascript" src="../lib/bower_components/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript" src="../lib/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 	<script type="text/javascript" src="controllers.js"></script>
 	<script type="text/javascript" src="services.js"></script>

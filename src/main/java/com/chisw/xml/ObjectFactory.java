@@ -39,6 +39,7 @@ public class ObjectFactory {
     private final static QName _Width_QNAME = new QName("", "Width");
     private final static QName _Date_QNAME = new QName("", "Date");
     private final static QName _Name_QNAME = new QName("", "Name");
+    private final static QName _URL_QNAME = new QName("", "URL");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.chisw.xml
@@ -186,6 +187,11 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "Name")
     public JAXBElement<String> createName(String value) {
         return new JAXBElement<String>(_Name_QNAME, String.class, null, value);
+    }
+
+    @XmlElementDecl(namespace = "", name = "URL")
+    public JAXBElement<String> createURL(String value) {
+        return new JAXBElement<String>(_URL_QNAME, String.class, null, value);
     }
 
 }

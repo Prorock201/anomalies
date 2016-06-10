@@ -1,4 +1,6 @@
-package com.chisw.xml;
+package com.chisw.dto;
+
+import com.chisw.dto.StreamDTO;
 
 import java.util.List;
 
@@ -9,17 +11,15 @@ public class JsonToFrontEnd {
 
     private String summaryToday;
     private String summaryLast;
-    private List<Stream> stream;
-    private List<Anomaly> anomalies;
+    private List<StreamDTO> streams;
 
     public JsonToFrontEnd() {
     }
 
-    public JsonToFrontEnd(String summaryToday, String summaryLast, List<Stream> stream, List<Anomaly> anomalies) {
+    public JsonToFrontEnd(String summaryToday, String summaryLast, List<StreamDTO> streams) {
         this.summaryToday = summaryToday;
         this.summaryLast = summaryLast;
-        this.stream = stream;
-        this.anomalies = anomalies;
+        this.streams = streams;
     }
 
     public String getSummaryToday() {
@@ -38,19 +38,11 @@ public class JsonToFrontEnd {
         this.summaryLast = summaryLast;
     }
 
-    public List<Stream> getStream() {
-        return stream;
+    public List<StreamDTO> getStreams() {
+        return streams;
     }
 
-    public void setStream(List<Stream> stream) {
-        this.stream = stream;
-    }
-
-    public List<Anomaly> getAnomalies() {
-        return anomalies;
-    }
-
-    public void setAnomalies(List<Anomaly> anomalies) {
-        this.anomalies = anomalies;
+    public void setStreams(List<StreamDTO> streams) {
+        this.streams = streams;
     }
 }
