@@ -1,8 +1,7 @@
 package com.chisw.dto;
 
-import com.chisw.xml.Anomaly;
+import com.chisw.xml.anomaliesstream.Anomaly;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 

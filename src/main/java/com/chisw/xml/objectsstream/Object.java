@@ -1,5 +1,5 @@
 
-package com.chisw.xml;
+package com.chisw.xml.objectsstream;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -22,8 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element ref="{}ID"/>
  *         &lt;element ref="{}Name"/>
- *         &lt;element ref="{}Image"/>
- *         &lt;element ref="{}URL"/>
+ *         &lt;element ref="{}Active"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,22 +37,19 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "id",
     "name",
-    "image",
-    "url"
+    "active"
 })
-@XmlRootElement(name = "Stream")
-public class Stream {
+@XmlRootElement(name = "Object")
+public class Object {
 
     @XmlElement(name = "ID", required = true)
     protected BigInteger id;
     @XmlElement(name = "Name", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "NCName")
     protected String name;
-    @XmlElement(name = "Image", required = true)
-    @XmlSchemaType(name = "anyURI")
-    protected String image;
-    @XmlElement(name = "URL", required = true)
-    @XmlSchemaType(name = "anyURI")
-    protected String url;
+    @XmlElement(name = "Active", required = true)
+    protected BigInteger active;
 
     /**
      * Gets the value of the id property.
@@ -102,34 +100,27 @@ public class Stream {
     }
 
     /**
-     * Gets the value of the image property.
+     * Gets the value of the active property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public String getImage() {
-        return image;
+    public BigInteger getActive() {
+        return active;
     }
 
     /**
-     * Sets the value of the image property.
+     * Sets the value of the active property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public void setImage(String value) {
-        this.image = value;
+    public void setActive(BigInteger value) {
+        this.active = value;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String value) {
-        this.url = url;
-    }
 }
