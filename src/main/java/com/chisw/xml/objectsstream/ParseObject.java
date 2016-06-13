@@ -63,7 +63,11 @@ public class ParseObject {
     private static List<ObjectDTO> convert(LSResponse lsResponse) {
         List<ObjectDTO> streamDTOList = new ArrayList<>();
         for (Object object : lsResponse.getObject()) {
-            streamDTOList.add(new ObjectDTO(object.getID().longValue(), object.getName(), object.getActive().shortValue()));
+            boolean value = false;
+            if(object.active.shortValue() == 1){
+                value = true;
+            }
+            streamDTOList.add(new ObjectDTO(object.getID().longValue(), object.getName(), value));
 
         }
 

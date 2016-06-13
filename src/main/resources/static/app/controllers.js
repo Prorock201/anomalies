@@ -1,8 +1,9 @@
 'use strict';
 
-app.controller('AppController', ['$scope', 'Stream', function($scope,Stream) {
+app.controller('AppController', ['$scope', 'Stream' , function($scope,Stream) {
 
     $scope.streams = [];
+    $scope.objects = [];
     $scope.selectedStream = {};
     $scope.image = '';
 
@@ -11,7 +12,6 @@ app.controller('AppController', ['$scope', 'Stream', function($scope,Stream) {
     Stream.query(function(response) {
         $scope.streams = response ? response : [];
     });
-
     $scope.selectStream = function (stream) {
         $scope.selectedStream = stream;
 
@@ -29,103 +29,47 @@ app.controller('AppController', ['$scope', 'Stream', function($scope,Stream) {
     };
 
 
+}]);
+
+app.controller('ObjectsController', ['$scope', 'Objects' , function($scope, Objects, $http) {
 
 
+    $scope.selected = [];
+    $scope.objects = [];
 
+    Objects.query(function(response) {
+        $scope.objects = response ? response : [];
+    });
 
-    $scope.today = function() {
-        $scope.dt = new Date();
-    };
-    $scope.today();
+    $scope.updateSelection = function($event, id) {
 
-    $scope.clear = function() {
-        $scope.dt = null;
-    };
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
+        if (action == 'add' & selected.indexOf(id) == -1) selected.push(id);
+        if (action == 'remove' && selected.indexOf(id) != -1) selected.splice(selected.indexOf(id), 1);
 
-    $scope.inlineOptions = {
-        customClass: getDayClass,
-        minDate: new Date(),
-        showWeeks: true
-    };
+            var params = {
+                objectId: 1,
+                operation: true,
+            };
 
-    $scope.dateOptions = {
-        dateDisabled: disabled,
-        formatYear: 'yy',
-        maxDate: new Date(2020, 5, 22),
-        minDate: new Date(),
-        startingDay: 1
-    };
+        $http({
+            url: 'http://localhost:8080/eyecatcher/updateObjects',
+            method: "POST",
+            data: { 'message' : params }
+        })
+            .then(function(response) {
+                    // success
+                },
+                function(response) { // optional
+                    // failed
+                });
+        
+        
 
-    // Disable weekend selection
-    function disabled(data) {
-        var date = data.date,
-            mode = data.mode;
-        return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-    }
-
-    $scope.toggleMin = function() {
-        $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-        $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
-    };
-
-    $scope.toggleMin();
-
-    $scope.open1 = function() {
-        $scope.popup1.opened = true;
     };
 
-    $scope.open2 = function() {
-        $scope.popup2.opened = true;
-    };
 
-    $scope.setDate = function(year, month, day) {
-        $scope.dt = new Date(year, month, day);
-    };
-
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[0];
-    $scope.altInputFormats = ['M!/d!/yyyy'];
-
-    $scope.popup1 = {
-        opened: false
-    };
-
-    $scope.popup2 = {
-        opened: false
-    };
-
-    var tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    var afterTomorrow = new Date();
-    afterTomorrow.setDate(tomorrow.getDate() + 1);
-    $scope.events = [
-        {
-            date: tomorrow,
-            status: 'full'
-        },
-        {
-            date: afterTomorrow,
-            status: 'partially'
-        }
-    ];
-
-    function getDayClass(data) {
-        var date = data.date,
-            mode = data.mode;
-        if (mode === 'day') {
-            var dayToCheck = new Date(date).setHours(0,0,0,0);
-
-            for (var i = 0; i < $scope.events.length; i++) {
-                var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
-
-                if (dayToCheck === currentDay) {
-                    return $scope.events[i].status;
-                }
-            }
-        }
-
-        return '';
-    }
 
 }]);
 

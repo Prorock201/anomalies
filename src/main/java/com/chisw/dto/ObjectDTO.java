@@ -7,12 +7,9 @@ public class ObjectDTO {
 
     private long id;
     private String name;
-    private short active;
+    private boolean active;
 
-    public ObjectDTO() {
-    }
-
-    public ObjectDTO(long id, String name, short active) {
+    public ObjectDTO(long id, String name, boolean active) {
         this.id = id;
         this.name = name;
         this.active = active;
@@ -34,11 +31,11 @@ public class ObjectDTO {
         this.name = name;
     }
 
-    public short getActive() {
+    public boolean isActive() {
         return active;
     }
 
-    public void setActive(short active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 }

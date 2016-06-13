@@ -16,7 +16,7 @@ import java.util.List;
 public class StreamController {
 
 
-    @CrossOrigin
+
     @RequestMapping(value = "/streams", method = RequestMethod.GET, produces="application/json")
     @ResponseBody
     public JsonToFrontEnd getStreams(){
@@ -24,13 +24,21 @@ public class StreamController {
         return jsonToFrontEnd;
     }
 
-    @CrossOrigin
+
     @RequestMapping(value = "/objects", method = RequestMethod.GET, produces="application/json")
     @ResponseBody
     public List<ObjectDTO> getObjects(){
 
         return ParseObject.parseURl();
     }
+
+    @RequestMapping(value = "/updateObjects", method = RequestMethod.POST)
+    public void getEducationById(@RequestParam("objectId") long id,
+                                   @RequestParam("operation") boolean flag) {
+        System.out.println("asa");
+    }
+
+
 
 
 
