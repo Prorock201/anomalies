@@ -33,8 +33,9 @@ public class StreamController {
     }
 
     @RequestMapping(value = "/updateObjects", method = RequestMethod.POST)
-    public void getEducationById(@RequestParam("objectId") long id,
-                                   @RequestParam("operation") boolean flag) {
+    public void getEducationById(@RequestParam("Command") String comand,
+                                   @RequestParam("ObjectId") long id,
+                                   @RequestParam("Active") short ids) {
         System.out.println("asa");
     }
 

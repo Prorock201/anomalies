@@ -31,7 +31,7 @@ app.controller('AppController', ['$scope', 'Stream' , function($scope,Stream) {
 
 }]);
 
-app.controller('ObjectsController', ['$scope', 'Objects' , function($scope, Objects, $http) {
+app.controller('ObjectsController', ['$scope', 'Objects' ,'$http', function($scope, Objects, $http) {
 
 
     $scope.selected = [];
@@ -45,30 +45,25 @@ app.controller('ObjectsController', ['$scope', 'Objects' , function($scope, Obje
 
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
-        if (action == 'add' & selected.indexOf(id) == -1) selected.push(id);
-        if (action == 'remove' && selected.indexOf(id) != -1) selected.splice(selected.indexOf(id), 1);
+        var active = 1;
+        if (action == 'remove') active = 0;
 
-            var params = {
-                objectId: 1,
-                operation: true,
-            };
 
         $http({
-            url: 'http://localhost:8080/eyecatcher/updateObjects',
+            url: 'http://api.leadspotting.com/LSAPI/LeadSpottingApi.jsp',
             method: "POST",
-            data: { 'message' : params }
-        })
-            .then(function(response) {
-                    // success
-                },
-                function(response) { // optional
-                    // failed
-                });
-        
-        
+            params: {Command: 'updateStreamObject', ObjectId: id, Active: active}
+        }).then(function (response) {
+                console.log("sucess")
+                console.log(response)
+            },
+            function (response) { // optional
+                console.log("failed")
+            });
+
+
 
     };
-
 
 
 }]);

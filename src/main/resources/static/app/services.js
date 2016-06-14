@@ -2,20 +2,15 @@
 
 app.factory('Stream', ['$resource', function ($resource) {
     
-    return $resource('http://localhost:8080/eyecatcher/streams', {}, {
+    return $resource('http://api.leadspotting.com/eyecatcher/streams', {}, {
         'query': {method: 'GET', isArray: false }
     });
-
-   /* return $resource('json.json', {}, {
-        'query': {method: 'GET', isArray: false }
-    });
-*/
 
 }]);
 
 app.factory('Objects', ['$resource', function ($resource) {
 
-    return $resource('http://localhost:8080/eyecatcher/objects', {}, {
+    return $resource('http://api.leadspotting.com/eyecatcher/objects', {}, {
         'query': {method: 'GET', isArray: true }
     });
     
