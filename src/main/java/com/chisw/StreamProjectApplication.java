@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 
-/*@SpringBootApplication
+@SpringBootApplication
 public class StreamProjectApplication {
 
 
@@ -18,9 +18,10 @@ public class StreamProjectApplication {
 
 	}
 
-}*/
+}
 
 
+/*
 //use when deploy war
 @SpringBootApplication
 public class StreamProjectApplication extends SpringBootServletInitializer {
@@ -36,4 +37,5 @@ public class StreamProjectApplication extends SpringBootServletInitializer {
 		SpringApplication.run(StreamProjectApplication.class, args);
 	}
 }
+*/
 
