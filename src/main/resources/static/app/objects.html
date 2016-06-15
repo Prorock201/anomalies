@@ -16,7 +16,7 @@
         <tr ng-repeat="object in objects" class="sat-table-rows" >
             <td>{{object.id}}</td>
             <td>{{object.name}}</td>
-            <td><input type="checkbox" ng-click="updateSelection($event, e.id)" ng-model="object.active"></td>
+            <td><input type="checkbox" ng-click="updateSelection($event, object.id)" ng-model="object.active"></td>
         </tr>
         </tbody>
     </table>
