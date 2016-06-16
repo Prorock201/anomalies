@@ -19,6 +19,7 @@ app.directive('chiDatepicker', function () {
     function link(scope, element, attrs) {
         scope.name = attrs.name;
         scope.maxDate = '';
+
         scope.open= function() {
             scope.popup.opened = true;
         };

@@ -2,15 +2,15 @@ package com.chisw.controller;
 
 import com.chisw.dto.JsonToFrontEnd;
 import com.chisw.dto.ObjectDTO;
-import com.chisw.xml.anomaliesstream.Parse;
+import com.chisw.dto.StreamDTO;
 import com.chisw.xml.objectsstream.ParseObject;
+import com.chisw.xml.stream.Parse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
-/**
- * Created by user on 3/28/2016.
- */
 
 @RestController
 public class StreamController {
@@ -32,11 +32,16 @@ public class StreamController {
         return ParseObject.parseURl();
     }
 
-    @RequestMapping(value = "/updateObjects", method = RequestMethod.POST)
-    public void getEducationById(@RequestParam("Command") String comand,
-                                   @RequestParam("ObjectId") long id,
-                                   @RequestParam("Active") short ids) {
-        System.out.println("asa");
+    @RequestMapping(value = "/updateStream", method = RequestMethod.POST)
+    public ResponseEntity<StreamDTO> getEducationById(@RequestBody StreamDTO streamDTO,
+                                                      @RequestParam("date") long time) {
+
+        StreamDTO newStream = streamDTO;
+        Date d = new Date(time * 1000);
+        int day = d.getDay();
+        int month = d.getMonth();
+        newStream.setAnomalies(com.chisw.xml.anomaly.Parse.getStreamAnomalyByDate(newStream.getId(), day, month ));
+        return ResponseEntity.ok(newStream);
     }
 
 

@@ -1,7 +1,9 @@
-package com.chisw.xml.anomaliesstream;
+package com.chisw.xml.stream;
 
 import com.chisw.dto.JsonToFrontEnd;
 import com.chisw.dto.StreamDTO;
+import com.chisw.xml.anomaly.*;
+import com.chisw.xml.anomaly.Anomalies;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -54,7 +56,7 @@ public class Parse {
     private static JsonToFrontEnd convert(LSResponse lsResponse) {
         List<StreamDTO> streamDTOs = convertToStreamDtoList(lsResponse);
         String [] strings = splitSummary(lsResponse);
-        return new JsonToFrontEnd(strings[0], strings[1] , addAnomalyToStream(streamDTOs, lsResponse));
+        return new JsonToFrontEnd(strings[0], strings[1] , addAnomalyToStream(streamDTOs));
 
     }
 
@@ -72,8 +74,23 @@ public class Parse {
         return streamDTOList;
     }
 
-    private static List<StreamDTO> addAnomalyToStream(List<StreamDTO> streamDTOList, LSResponse lsResponse) {
+    private static List<StreamDTO> addAnomalyToStream(List<StreamDTO> streamDTOList) {
 
+        List<com.chisw.xml.anomaly.Anomaly> list = new ArrayList<>();
+        List<StreamDTO> newStream = new ArrayList<>();
+        for(StreamDTO stream: streamDTOList){
+            com.chisw.xml.anomaly.LSResponse streamAnomaly = com.chisw.xml.anomaly.Parse.getStreamAnomaly((int) stream.getId());
+            if(!(streamAnomaly.getAnomalies().getAnomaly().isEmpty())){
+                stream.setAnomalies(streamAnomaly.getAnomalies().getAnomaly());
+
+            }
+            newStream.add(stream);
+        }
+
+
+
+
+/*
         for (Iterator<StreamDTO> iterator = streamDTOList.iterator(); iterator.hasNext(); ) {
             StreamDTO streamDTO1 = iterator.next();
             lsResponse.getAnomalies().getAnomaly().stream().
@@ -83,8 +100,8 @@ public class Parse {
                                           streamDTO1.setDetectedPerson(true);
                                          }
             });
-        }
-        return streamDTOList;
+        }*/
+        return newStream;
     }
 
 

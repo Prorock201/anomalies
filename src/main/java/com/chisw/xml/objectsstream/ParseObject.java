@@ -1,10 +1,6 @@
 package com.chisw.xml.objectsstream;
 
-import com.chisw.dto.JsonToFrontEnd;
 import com.chisw.dto.ObjectDTO;
-import com.chisw.dto.StreamDTO;
-import com.chisw.xml.objectsstream.LSResponse;
-import com.chisw.xml.anomaliesstream.Stream;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -12,7 +8,6 @@ import javax.xml.bind.Unmarshaller;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**

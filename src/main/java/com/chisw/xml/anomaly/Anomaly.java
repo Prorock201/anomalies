@@ -1,5 +1,5 @@
 
-package com.chisw.xml.anomaliesstream;
+package com.chisw.xml.anomaly;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -53,9 +53,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class Anomaly {
 
     @XmlElement(name = "StreamId", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "NMTOKEN")
-    protected String streamId;
+    protected BigInteger streamId;
     @XmlElement(name = "Img", required = true)
     @XmlSchemaType(name = "anyURI")
     protected String img;
@@ -66,6 +64,8 @@ public class Anomaly {
     @XmlElement(name = "Height", required = true)
     protected BigInteger height;
     @XmlElement(name = "Desc", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "NCName")
     protected String desc;
     @XmlElement(name = "BoundingX", required = true)
     protected BigInteger boundingX;
@@ -77,10 +77,10 @@ public class Anomaly {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public String getStreamId() {
+    public BigInteger getStreamId() {
         return streamId;
     }
 
@@ -89,10 +89,10 @@ public class Anomaly {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public void setStreamId(String value) {
+    public void setStreamId(BigInteger value) {
         this.streamId = value;
     }
 

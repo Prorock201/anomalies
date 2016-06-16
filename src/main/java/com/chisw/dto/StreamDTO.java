@@ -1,6 +1,8 @@
 package com.chisw.dto;
 
-import com.chisw.xml.anomaliesstream.Anomaly;
+
+
+import com.chisw.xml.anomaly.Anomaly;
 
 import java.util.ArrayList;
 import java.util.List;

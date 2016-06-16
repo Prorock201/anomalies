@@ -1,9 +1,8 @@
 'use strict';
 
-app.controller('AppController', ['$scope', 'Stream' , function($scope,Stream) {
+app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , function($scope,Stream, UpdateStream, $http) {
 
     $scope.streams = [];
-    $scope.objects = [];
     $scope.selectedStream = {};
     $scope.image = '';
     $scope.filterDate = 'date';
@@ -34,8 +33,26 @@ app.controller('AppController', ['$scope', 'Stream' , function($scope,Stream) {
     };
 
     $scope.isFilterUp = function() {
-        return $scope.filterDate == 'date'? false : true;
+        return $scope.filterDate != 'date';
     };
+
+    $scope.$watch('selectedDate', function() {
+
+
+
+        $http({
+            url: 'http://localhost:8080/eyecatcher/updateStream',
+            method: "POST",
+            data: $scope.selectedStream,
+            params: {date: $scope.selectedDate.getTime()}
+        }).then(function (response) {
+                $scope.selectStream(response.data);
+                console.log(response.data);
+            },
+            function (response) { // optional
+                console.log("failed")
+            });
+    });
 
 }]);
 

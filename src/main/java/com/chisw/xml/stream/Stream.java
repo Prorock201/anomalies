@@ -1,5 +1,5 @@
 
-package com.chisw.xml.anomaliesstream;
+package com.chisw.xml.stream;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;

@@ -1,5 +1,5 @@
 
-package com.chisw.xml.anomaliesstream;
+package com.chisw.xml.anomaly;
 
 import java.util.ArrayList;
 import java.util.List;
