@@ -493,7 +493,7 @@ table {
 
 .anomaly-block {
 	width: 1254px;
-	height: 496px;
+	height: 830px;
 }
 
 .anomaly-block:after {
@@ -511,7 +511,7 @@ table {
 }
 
 .anomaly-content .scrollable-area {
-	height: 364px;
+	height: 673px;
 }
 
 .anomaly-view {
@@ -598,10 +598,11 @@ table {
 }
 
 .anomaly-heading .info-for {
-	width: 155px;
+	width: 130px;
 	font: 13px/17px "proxima_novalight", Arial, Helvetica, sans-serif;
 	color: #959596;
-	padding: 1px 0 0 14px;
+	padding: 1px 0 0 0;
+	text-align: center;
 }
 
 .anomaly-heading .date {
@@ -1587,14 +1588,19 @@ table.heading td:last-child {
 	display: none !important;
 }
 
-chi-datepicker.datepicker input[name="datepicker"], chi-datepicker.datepicker .datepicker__btn {
+chi-datepicker.datepicker input[name], chi-datepicker.datepicker .datepicker__btn {
 	background-color: inherit;
 	color: #959596;
 	border: none;
 	border-left: 1px solid #4e4f51;
 	border-radius: 0px;
+	text-align: center;
 }
 
 chi-datepicker.datepicker .datepicker__btn {
   width: 45px;
+}
+
+.col-md-4 {
+	padding: 0 !important;
 }

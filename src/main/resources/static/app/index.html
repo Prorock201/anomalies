@@ -84,8 +84,12 @@
 								<a ng-href="{{selectedStream.cameraLink}}" target="_blank"  class="btn-out"></a>
 							</div>
 							<div class="heading-row">
-								<span class="info-for">Showing anomalies for</span>
-								<chi-datepicker class="datepicker" name="datepicker" ng-model="selectedDate"></chi-datepicker>
+								<span class="info-for">Star Date</span>
+								<chi-datepicker class="datepicker" name="startdate" ng-model="dateFilter.startdate"></chi-datepicker>
+							</div>
+							<div class="heading-row">
+								<span class="info-for">End Date</span>
+								<chi-datepicker class="datepicker" name="enddate" ng-model="dateFilter.enddate" min-date="dateFilter.startdate"></chi-datepicker>
 							</div>
 						</div>
 					</div>
@@ -117,9 +121,9 @@
 					</div>
 				</div>
 				<div class="anomaly-view">
-					<div class="single-box" ng-hide="$scope.image">
-						<img ng-src="{{image}}" >
-
+					<div class="col-md-4" ng-repeat="item in selectedStream.all_event track by $index">
+						<img class="img-responsive" ng-src="{{item.img}}">
+						<svg-circle index={{$index}}></svg-circle>
 					</div>
 					<div class="no-anomaly" ng-show="$scope.image">
 						<div class="no-anomaly-holder">
@@ -127,7 +131,6 @@
 							<span class="add-info">You can still view archived anomalies for the previous days</span>
 						</div>
 					</div>
-					<svg-circle></svg-circle>
 				</div>
 			</div>
 		</div>

@@ -6,8 +6,20 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
     $scope.selectedStream = {};
     $scope.image = '';
     $scope.filterDate = 'date';
+    $scope.dateFilter = {};
 
     $scope.anomaly = null;
+
+    $scope.$watch('startdate', function() {
+      if (!$scope.startdate) return;
+      if ($scope.enddate <= $scope.startdate) $scope.enddate = new Date($scope.startdate);
+      $scope.minEndDate = new Date($scope.startdate);
+    });
+    $scope.$watch('dateFilter', function() {
+      if (!$scope.dateFilter.startdate) return;
+      if ($scope.dateFilter.enddate <= $scope.dateFilter.startdate) $scope.dateFilter.enddate = new Date($scope.dateFilter.startdate);
+      $scope.dateFilter.minEndDate = new Date($scope.dateFilter.startdate);
+    }, true);
 
     Stream.query(function(response) {
         $scope.streams = response ? response : [];
@@ -36,23 +48,23 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
         return $scope.filterDate != 'date';
     };
 
-    $scope.$watch('selectedDate', function() {
+    // $scope.$watch('selectedDate', function() {
 
 
 
-        $http({
-            url: 'http://localhost:8080/eyecatcher/updateStream',
-            method: "POST",
-            data: $scope.selectedStream,
-            params: {date: $scope.selectedDate.getTime()}
-        }).then(function (response) {
-                $scope.selectStream(response.data);
-                console.log(response.data);
-            },
-            function (response) { // optional
-                console.log("failed")
-            });
-    });
+    //     $http({
+    //         url: 'http://localhost:8080/eyecatcher/updateStream',
+    //         method: "POST",
+    //         data: $scope.selectedStream,
+    //         params: {date: $scope.selectedDate.getTime()}
+    //     }).then(function (response) {
+    //             $scope.selectStream(response.data);
+    //             console.log(response.data);
+    //         },
+    //         function (response) { // optional
+    //             console.log("failed")
+    //         });
+    // });
 
 }]);
 
