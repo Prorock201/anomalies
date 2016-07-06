@@ -493,7 +493,7 @@ table {
 
 .anomaly-block {
 	width: 1254px;
-	height: 496px;
+	height: 830px;
 }
 
 .anomaly-block:after {
@@ -511,7 +511,7 @@ table {
 }
 
 .anomaly-content .scrollable-area {
-	height: 364px;
+	height: 673px;
 }
 
 .anomaly-view {
@@ -598,10 +598,11 @@ table {
 }
 
 .anomaly-heading .info-for {
-	width: 155px;
+	width: 130px;
 	font: 13px/17px "proxima_novalight", Arial, Helvetica, sans-serif;
 	color: #959596;
-	padding: 0 0 0 14px;
+	padding: 1px 0 0 0;
+	text-align: center;
 }
 
 .anomaly-heading .date {
@@ -690,7 +691,8 @@ table {
 .anomaly-list .item {
 	display: table-cell;
 	vertical-align: middle;
-	padding: 6px 10px 6px 0;
+	padding: 6px 10px 6px 50px;
+	width: 50% !important;
 }
 
 .anomaly-list .item:first-child {
@@ -761,18 +763,35 @@ table {
 	opacity: .9;
 }
 
-.anomaly-list .time-item:before {
-	content: "";
-	clear: both;
-	position: absolute;
-	top: 0;
-	right: 0;
-	background: url(../images/sprite.png) no-repeat -143px 0;
-	width: 15px;
-	height: 14px;
-	opacity: .45;
-	-webkit-transition: opacity .2s linear;
-	transition: opacity .2s linear;
+/*.anomaly-list .time-item:before {
+  content: "";
+  clear: both;
+  position: absolute;
+  top: 2px;
+  right: -10px;
+  background: url(../images/sprite.png) no-repeat -143px 0; 
+  width: 15px;
+  height: 14px;
+  opacity: .45; 
+  -webkit-transition: opacity .2s linear;
+  transition: opacity .2s linear;
+}
+*/
+.arrow-filter-down {
+	cursor: pointer;
+  display: inline-block;
+  background: url(../images/arrow_filter.png) no-repeat;
+  width: 7px;
+  height: 10px;
+  -webkit-transition: opacity .2s linear;
+  transition: opacity .2s linear;
+  transform: scale(1.2);
+  margin: 0 0 0 -10px;
+}
+
+.arrow-filter-up {
+  transform: rotate(180deg) scale(1.2);
+  margin: 0 0 0 -10px;
 }
 
 .anomaly-list .i-person-sm,
@@ -1132,26 +1151,26 @@ a.carousel-btn-next:before {
 	text-align: center;
 }
 
-.heading tr {
+table.heading tr {
 	border-top: 1px solid #3b3c3d;
 }
 
-.heading td {
+table.heading td {
 	border: 1px solid #3b3c3d;
 	padding: 5px;
 	vertical-align: middle;
 }
 
-.heading td:first-child {
+table.heading td:first-child {
 	border: 0;
 	width: 20.2%;
 }
 
-.heading td:nth-child(2) {
+table.heading td:nth-child(2) {
 	width: 28.5%;
 }
 
-.heading td:last-child {
+table.heading td:last-child {
 	padding: 0;
 	vertical-align: top;
 }
@@ -1570,3 +1589,23 @@ a.carousel-btn-next:before {
 	display: none !important;
 }
 
+chi-datepicker.datepicker input[name], chi-datepicker.datepicker .datepicker__btn {
+	background-color: inherit;
+	color: #959596;
+	border: none;
+	border-left: 1px solid #4e4f51;
+	border-radius: 0px;
+	text-align: center;
+}
+
+chi-datepicker.datepicker .datepicker__btn {
+  width: 45px;
+}
+
+.col-md-4 {
+	padding: 0 !important;
+}
+
+.item .badge {
+  margin: -1px 0 0 5px;
+}

@@ -22,7 +22,10 @@ function initLightbox() {
 					jQuery.fancybox.close();
 				});
 			}
-		}
+		},
+		beforeClose: function() {
+			$(window).trigger('fancyboxClosed');
+		},
 	});
 }
 

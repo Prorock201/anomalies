@@ -1,8 +1,9 @@
 package com.chisw.dto;
 
-import com.chisw.xml.Anomaly;
 
-import java.math.BigInteger;
+
+import com.chisw.xml.anomaly.Anomaly;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class StreamDTO {
     
     private long id;
     private String name;
+    private String cameraLink;
     private String image;
     private boolean isDetectedPerson;
     private boolean isHotAnomaly;
@@ -22,10 +24,11 @@ public class StreamDTO {
     public StreamDTO() {
     }
 
-    public StreamDTO(String image, String name, long id) {
+    public StreamDTO(String image, String name, long id, String cameraLink) {
         this.image = image;
         this.name = name;
         this.id = id;
+        this.cameraLink = cameraLink;
     }
 
     public long getId() {
@@ -74,5 +77,13 @@ public class StreamDTO {
 
     public void setAnomalies(List<Anomaly> anomalies) {
         this.anomalies = anomalies;
+    }
+
+    public String getCameraLink() {
+        return cameraLink;
+    }
+
+    public void setCameraLink(String cameraLink) {
+        this.cameraLink = cameraLink;
     }
 }
