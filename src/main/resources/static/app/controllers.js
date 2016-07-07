@@ -13,22 +13,26 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
 
     $scope.$watch('dateFilter', function() {
       if (!$scope.dateFilter.startdate) return;
-      if (!$scope.dateFilter.enddate || $scope.dateFilter.enddate <= $scope.dateFilter.startdate) $scope.dateFilter.enddate = new Date($scope.dateFilter.startdate);
+      if (!$scope.dateFilter.enddate || $scope.dateFilter.enddate <= $scope.dateFilter.startdate) {
+        $scope.dateFilter.enddate = new Date($scope.dateFilter.startdate);
+      } 
     }, true);
 
     Stream.query(function(response) {
         $scope.streams = response ? response : [];
     });
+
     $scope.selectStream = function (stream) {
         $scope.selectedStream = stream;
-        $scope.selectedEvents = stream.anomalies;
+        $scope.selectedEvents = stream.init;
 
         if($scope.selectedStream.anomalies.length > 0){
             $scope.image = $scope.selectedStream.anomalies[0].img;
             $scope.anomaly = $scope.selectedStream.anomalies[0];
         } else {
             $scope.image = stream.image;
-            $scope.anomaly = null;        }
+            $scope.anomaly = null;
+        }
     };
 
     $scope.changeImage = function (anomaly) {

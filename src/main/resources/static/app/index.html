@@ -56,8 +56,6 @@
 									</div>
 									<div class="cam-info">
 										<span class="source" >{{stream.name}}</span>
-
-										<!--<span class="time">Anomaly detected at 18:30 (21.03)</span>-->
 									</div>
 								</div>
 							</a>
@@ -99,10 +97,6 @@
 							<ul class="anomaly-list">
 								<li>
 									<span class="anomaly-row">
-<!-- 										<span class="item">
-											<a class="time-item">Time</a>
-											<span class="arrow-filter-down" ng-click="changeFilter()" ng-class="{'arrow-filter-up': isFilterUp()}"></span>
-										</span> -->
 										<span class="item">EVENT TYPE</span>
 										<span class="item">PREVIEW</span>
 									</span>
@@ -121,9 +115,9 @@
 					</div>
 				</div>
 				<div class="anomaly-view">
-					<div class="col-md-4" ng-repeat="item in selectedEvents track by $index">
+					<div class="col-md-4" ng-repeat="item in selectedEvents">
 						<img class="img-responsive" ng-src="{{item.img}}">
-						<svg-circle index={{$index}}></svg-circle>
+						<svg-circle index={{item}}></svg-circle>
 					</div>
 					<div class="no-anomaly" ng-show="$scope.image">
 						<div class="no-anomaly-holder">
