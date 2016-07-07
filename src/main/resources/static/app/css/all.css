@@ -511,7 +511,7 @@ table {
 }
 
 .anomaly-content .scrollable-area {
-	height: 673px;
+	height: 638px;
 }
 
 .anomaly-view {
@@ -1608,4 +1608,20 @@ chi-datepicker.datepicker .datepicker__btn {
 
 .item .badge {
   margin: -1px 0 0 5px;
+}
+
+ul.anomaly-row {
+	list-style: none;
+}
+
+.anomaly-row .event-type {
+	border: 0;
+}
+
+#anomalies, #allEvents {
+	cursor: pointer;
+}
+
+.event-category .badge {
+	margin: 0 0 0 6px;
 }

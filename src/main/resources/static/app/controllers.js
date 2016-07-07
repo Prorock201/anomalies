@@ -8,6 +8,10 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
     $scope.filterDate = 'date';
     $scope.dateFilter = {};
     $scope.selectedEvents = [];
+    $scope.uniqAnomaliesByEventType = [];
+    $scope.uniqAllEventsByEventType = [];
+    $scope.showAnomaliesEvents = false;
+    $scope.showAllEvents = false;
 
     $scope.anomaly = null;
 
@@ -26,6 +30,20 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
         $scope.selectedStream = stream;
         $scope.selectedEvents = stream.init;
 
+        var anomaliesDesc = [];
+        var allEventDesc = [];
+
+        angular.forEach(stream.anomalies, function(i) {
+            this.push(i.desc);
+        }, anomaliesDesc);
+
+        angular.forEach(stream.all_event, function(i) {
+            this.push(i.desc);
+        }, allEventDesc);
+
+        $scope.uniqAnomaliesByEventType = _.uniqBy(anomaliesDesc);
+        $scope.uniqAllEventsByEventType = _.uniqBy(allEventDesc);
+
         if($scope.selectedStream.anomalies.length > 0){
             $scope.image = $scope.selectedStream.anomalies[0].img;
             $scope.anomaly = $scope.selectedStream.anomalies[0];
@@ -35,29 +53,36 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
         }
     };
 
+    $scope.toggleDropDown = function(event) {
+        $scope[event] = !$scope[event];
+    };
+
     $scope.changeImage = function (anomaly) {
         $scope.image = anomaly.img;
         $scope.anomaly = anomaly;
-    };
-
-    $scope.changeFilter = function() {
-        $scope.filterDate = ($scope.filterDate == 'date') ? '-date' : 'date';
     };
 
     $scope.isFilterUp = function() {
         return $scope.filterDate != 'date';
     };
 
-    $scope.findEventType = function(item) {
+    $scope.findEventType = function(array, item) {
+        debugger;
         var sum = 0;
-        $scope.selectedStream.anomalies.forEach(function(value) {
-            if(value.desc == item) { sum++ };
-        });
+        if (item) {
+            $scope.selectedStream[array].forEach(function(value) {
+                if(value.desc == item) { sum++ };
+            });
+        } else {
+            sum = $scope.selectedStream[array] ? $scope.selectedStream[array].length : 0;
+        }
         return sum;
     };
 
-    $scope.changeFilter = function(event) {
-        $scope.selectedEvents = event;
+    $scope.changeFilter = function(array, item) {
+        $scope.selectedEvents = $scope.selectedStream[array].filter(function(value) {
+            return item == value.desc;
+        });
     };
 
     $scope.getDataByDate = function() {
