@@ -89,7 +89,7 @@
 								<span class="info-for">End Date</span>
 								<chi-datepicker class="datepicker" name="enddate" ng-model="dateFilter.enddate" min-date="dateFilter.startdate"></chi-datepicker>
 							</div>
-							<div class="heading-row"><label class="btn" ng-click="getDataByDate()">Show anomalies for selected date</label></div>
+<!-- 							<div class="heading-row"><label class="btn" ng-click="getDataByDate()">Show anomalies for selected date</label></div> -->
 						</div>
 					</div>
 					<div class="scrollable-area">
@@ -103,7 +103,7 @@
 								</li>
 								<li>
 
-									<div class="anomaly-row event-category" id="anomalies" ng-click="toggleDropDown('showAnomaliesEvents')">
+									<div class="anomaly-row event-category" ng-click="toggleDropDown('showAnomaliesEvents')">
 										<span class="row">
 											<span class="col-md-10"><span>ANOMALY</span><span class="caret"></span></span>
 											<span class="col-md-2"><span class="badge progress-bar-warning">{{findEventType('anomalies')}}</span></span>
@@ -112,7 +112,7 @@
 									<ul class="anomaly-row" ng-repeat="item in uniqAnomaliesByEventType" ng-show="showAnomaliesEvents && {{uniqAnomaliesByEventType.length > 0}}">
 										<li class="event-type">
 											<span class="row">
-												<a href="#" ng-click="changeFilter('anomalies', item)">
+												<a href="#" ng-click="getAnomaliesByEventType('anomalies', item)">
 													<span class="col-md-10">{{item}}</span>
 													<span class="col-md-2"><span class="badge">{{findEventType('anomalies', item)}}</span></span>
 												</a>
@@ -120,16 +120,16 @@
 										</li>
 									</ul>
 
-									<div class="anomaly-row event-category" id="allEvents" ng-click="toggleDropDown('showAllEvents')">
+									<div class="anomaly-row event-category" ng-click="toggleDropDown('showAllEvents')">
 										<span class="col-md-10"><span>ALL EVENTS</span><span class="caret"></span></span>
-										<span class="col-md-2"><span class="badge progress-bar-warning">{{findEventType('all_event')}}</span></span>
+										<span class="col-md-2"><span class="badge progress-bar-warning">{{findEventType('allEvents')}}</span></span>
 									</div>
 									<ul class="anomaly-row" ng-repeat="item in uniqAllEventsByEventType" ng-show="showAllEvents && {{uniqAllEventsByEventType.length > 0}}">
 										<li class="event-type">
 											<span class="row">
-												<a href="#" ng-click="changeFilter('all_event', item)">
+												<a href="#" ng-click="getAnomaliesByEventType('allEvents', item)">
 													<span class="col-md-10">{{item}}</span>
-													<span class="col-md-2"><span class="badge">{{findEventType('all_event', item)}}</span></span>
+													<span class="col-md-2"><span class="badge">{{findEventType('allEvents', item)}}</span></span>
 												</a>
 											</span>
 										</li>
