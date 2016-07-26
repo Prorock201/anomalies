@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , function($scope,Stream, UpdateStream, $http) {
+app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', '$http', function($scope,Stream, UpdateStream, GetById, $http) {
 
     $scope.streams = [];
     $scope.selectedStream = {};
@@ -17,7 +17,44 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
         allEvents: [],
     };
 
+    $scope.baseUrl = 'http://api.leadspotting.com';
+    $scope.localUrl = 'http://192.168.2.95:8080';
+    $scope.user = {
+        response: false,
+        id: 0
+    };
+
     $scope.anomaly = null;
+
+
+    $scope.renderedEvents = [];
+    $scope.itemPerPage = 1; //Maximum number of items per page.
+    $scope.maxSize = 5; // Limit number for pagination size
+    $scope.bigTotalItems = $scope.selectedEvents.length;
+    // $scope.bigTotalItems = 175;
+    $scope.bigCurrentPage = 1; // Current page number. First page is 1
+
+    $scope.goToPage = function() {
+        debugger;
+        var startAt = $scope.bigCurrentPage * $scope.itemPerPage;
+        var endOn = startAt + $scope.itemPerPage;
+        var renderedEvents = $scope.selectedEvents.slice(startAt, endOn);
+        console.log('end');
+    };
+
+    // $scope.totalItems = 64; 
+    // $scope.currentPage = 4;
+
+    // $scope.setPage = function (pageNo) {
+    //     $scope.currentPage = pageNo;
+    // };
+
+    // $scope.pageChanged = function() {
+    //    console.log('Page changed to: ' + $scope.currentPage);
+    // };
+
+
+
 
     $scope.$watch('dateFilter', function() {
       if (!$scope.dateFilter.startdate) return;
@@ -26,37 +63,44 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
       } 
     }, true);
 
-    Stream.query(function(response) {
-        $scope.streams = response ? response : [];
-    });
+    $scope.signin = function() {
+        debugger;
+        $http({
+            url: localUrl + '/eyecatcher/login',
+            method: "POST",
+            data: {username: $scope.username, password: $scope.password},
+        })
+        .then($scope.sendStreamsRequest, $scope.getError);
+    };
+
+    $scope.sendStreamsRequest = function(data) {
+        $scope.user = data.data;
+        $http({
+            url: localUrl + '/eyecatcher/streams',
+            method: "GET",
+            params: {userid: $scope.user.id},
+        })
+        .then($scope.getStreams, $scope.getError);
+    };
+
+    $scope.getStreams = function(data) {
+        $scope.streams = data.data ? data.data : [];
+    };
+
+    $scope.getError = function(data) {
+        debugger;
+        console.log('ERROR!', data.statusText ? data.statusText : 'Something went wrong');
+    };
 
     $scope.selectStream = function (stream) {
         $scope.selectedStream = stream;
         $scope.selectedEvents = stream.init;
-
         $scope.getStreamObject(stream.id);
-
-        // if($scope.selectedStream.anomalies.length > 0){
-        //     $scope.image = $scope.selectedStream.anomalies[0].img;
-        //     $scope.anomaly = $scope.selectedStream.anomalies[0];
-        // } else {
-        //     $scope.image = stream.image;
-        //     $scope.anomaly = null;
-        // }
     };
 
     $scope.toggleDropDown = function(event) {
         $scope[event] = !$scope[event];
     };
-
-    // $scope.changeImage = function (anomaly) {
-    //     $scope.image = anomaly.img;
-    //     $scope.anomaly = anomaly;
-    // };
-
-    // $scope.isFilterUp = function() {
-    //     return $scope.filterDate != 'date';
-    // };
 
     $scope.findEventType = function(array, item) {
         var sum = 0;
@@ -70,18 +114,13 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
         return sum;
     };
 
-    // $scope.changeFilter = function(array, item) {
-    //     $scope.selectedEvents = $scope.selectedStream[array].filter(function(value) {
-    //         return item == value.desc;
-    //     });
-    // };
-
     $scope.getStreamObject = function(id) {
         $http({
-            url: 'http://192.168.2.75:8080/eyecatcher/getStreamObjectSummaryByStreamId',
+            url: baseUrl + '/eyecatcher/getStreamObjectSummaryByStreamId',
             method: "GET",
             params: {streamId: id}
-        }).then($scope.filterResponseData,
+        })
+        .then($scope.filterResponseData,
             function (response) {
                 console.log('getStreamObject', 'failed');
             });
@@ -92,11 +131,12 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
 
         if ($scope.dateFilter.startdate && $scope.dateFilter.enddate) {
             $http({
-                url: 'http://192.168.2.75:8080/eyecatcher/getStreamObjectSummaryByStreamIdAndObjectIdByDate',
+                url: baseUrl + '/eyecatcher/getStreamObjectSummaryByStreamIdAndObjectIdByDate',
                 method: "GET",
                 params: {streamId:  $scope.selectedStream.id, objectId: objectId, from: new Date($scope.dateFilter.startdate).getDate(), to: new Date($scope.dateFilter.enddate).getDate()}
             }).then(function (response) {
                     $scope.selectedEvents = response.data;
+                    $scope.goToPage();
                     console.log('getAnomaliesByEventTypeByStreamIdAndObjectIdByDate', 'sucess');
                 },
                 function (response) {
@@ -104,11 +144,12 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
                 });
         } else {
             $http({
-                url: 'http://192.168.2.75:8080/eyecatcher/getStreamObjectSummaryByStreamIdAndObjectId',
+                url: baseUrl + '/eyecatcher/getStreamObjectSummaryByStreamIdAndObjectId',
                 method: "GET",
                 params: {streamId:  $scope.selectedStream.id, objectId: objectId}
             }).then(function (response) {
                     $scope.selectedEvents = response.data;
+                    $scope.goToPage();
                     console.log('getAnomaliesByEventTypeByStreamIdAndObjectId', 'sucess');
                 },
                 function (response) {
@@ -141,23 +182,6 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', '$http' , f
         $scope.uniqAllEventsByEventType = _.uniqBy(allEventDesc);
         console.log('getStreamObject', 'sucess');
     };
-
-    // $scope.getDataByDate = function() {
-    //     if ($scope.dateFilter.startdate && $scope.dateFilter.enddate) {
-    //         $http({
-    //             url: 'http://192.168.2.75:8080/eyecatcher/updateByRange',
-    //             method: "POST",
-    //             params: {streamId:  $scope.selectedStream.id, from: new Date($scope.dateFilter.startdate).getDate(), to: new Date($scope.dateFilter.enddate).getDate()}
-    //         }).then(function (response) {
-    //                 $scope.selectedStream = response.data[0];
-    //                 $scope.selectedEvents = response.data[0].anomalies;
-    //                 console.log("sucess");
-    //             },
-    //             function (response) {
-    //                 console.log("failed");
-    //             });
-    //     }
-    // };
 
     $(window).on('fancyboxClosed', function(){
         $scope.dateFilter.startdate = '';
@@ -199,4 +223,3 @@ app.controller('ObjectsController', ['$scope', 'Objects' ,'$http', function($sco
     };
 
 }]);
-

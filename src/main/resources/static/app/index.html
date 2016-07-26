@@ -3,12 +3,52 @@
 <html lang="en" ng-app="myApp">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>The Eyecatcher</title>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/all.css">
 
 </head>
 <body  ng-controller="AppController">
+
+	<div class="login-modal" ng-hide="user.response == 'true'">
+		<div class="login-container">
+      <div class="login-middle">    
+        <div style="margin-top:50px;" class="login-mainbox col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+          <div class="panel panel-info" >
+            <div class="panel-heading">
+              <div class="panel-title">Sign In</div>                        
+            </div>     
+
+            <div style="padding-top:30px" class="panel-body" >
+              
+              <form class="form-horizontal" name="form" role="form" ng-submit="signin()">
+                
+                <div style="margin-bottom: 25px" class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input ng-model="username" type="text" class="form-control" name="username" value="" placeholder="User">                                        
+                </div>
+                <div style="margin-bottom: 25px" class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <input ng-model="password" type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+                <div style="margin-top:10px" class="input-group col-xs-12">
+                  <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+                    <input type="submit" class="btn btn-success btn-block" value="Login"/>
+                  </div>
+                </div>
+
+              </form>     
+
+            </div>
+
+          </div>  
+        </div>
+      </div>
+    </div>
+	</div>
+
+
 	<div class="container-fluid">
 		<header id="header">
 			<table class="heading">
@@ -25,37 +65,25 @@
 						</dl>
 					</td>
 					<td>
-						<!--<span class="filter-head">filter anomalies</span>-->
 						<div class="filters-box">
-							<ul class="filters-list">
-								<li>
-									<!--<a class="filter-now" href="#">happening now <i class="i-close"></i></a>-->
-								</li>
-								<li>
-									<!--<a class="filter-day" href="#">last 24 hours <i class="i-close"></i></a>-->
-								</li>
-								<li>
-									<!--<a class="filter-face" href="#">face detection <i class="i-close"></i></a>-->
-								</li>
-							</ul>
 						</div>
 					</td>
 				</tr>
 			</table>
 		</header>
 		<div id="main" role="main">
-			<div class="cams-block">		<!-- add classes "filtered","now","day","face" -->
+			<div class="cams-block">
 				<div class="row row01">
-					<div class="cam-box" ng-repeat="stream in streams.streams">
+
+					<div class="cam-box" ng-repeat="stream in streams.list">
 						<div class="cam-frame">
 							<a ng-href="#popup01" ng-click="selectStream(stream)"  class="cam-holder lightbox" style="background-image:url({{stream.image}})">
 								<div class="cam-descript">
 									<div class="ico-box">
-										<!--<i class="i-hour"></i>-->
 										<i class="i-person" ng-show="stream.detectedPerson==true" ></i>
 									</div>
 									<div class="cam-info">
-										<span class="source" >{{stream.name}}</span>
+										<span class="source" >{{stream.name}}<span class="badge progress-bar-warning">{{stream.anomaly}}</span></span>
 									</div>
 								</div>
 							</a>
@@ -72,6 +100,7 @@
 	</div>
 
 	<div class="popup-holder">
+
 		<div id="popup01" class="lightbox">
 			<div class="anomaly-block">
 				<div class="anomaly-content">
@@ -89,7 +118,6 @@
 								<span class="info-for">End Date</span>
 								<chi-datepicker class="datepicker" name="enddate" ng-model="dateFilter.enddate" min-date="dateFilter.startdate"></chi-datepicker>
 							</div>
-<!-- 							<div class="heading-row"><label class="btn" ng-click="getDataByDate()">Show anomalies for selected date</label></div> -->
 						</div>
 					</div>
 					<div class="scrollable-area">
@@ -141,7 +169,7 @@
 					</div>
 				</div>
 				<div class="anomaly-view">
-					<div class="col-md-4" ng-repeat="item in selectedEvents">
+					<div class="col-md-4" ng-repeat="item in renderedEvents">
 						<img class="img-responsive" ng-src="{{item.img}}">
 						<svg-circle index={{item}}></svg-circle>
 					</div>
@@ -151,9 +179,24 @@
 							<span class="add-info">You can still view archived anomalies for the previous days</span>
 						</div>
 					</div>
+
+					<div class="col-md-6 col-md-offset-3">
+    				<ul uib-pagination 
+    						items-per-page="itemPerPage"
+    						total-items="bigTotalItems" 
+    						ng-model="bigCurrentPage" 
+    						max-size="maxSize" 
+    						class="pagination-sm" 
+    						boundary-link-numbers="true"
+    						ng-change="goToPage()"
+    						>
+    				</ul>
+					</div>
+
 				</div>
 			</div>
 		</div>
+
 	</div>
 
 
