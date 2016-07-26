@@ -493,7 +493,7 @@ table {
 
 .anomaly-block {
 	width: 1254px;
-	height: 830px;
+	height: 732px;
 }
 
 .anomaly-block:after {
@@ -511,14 +511,14 @@ table {
 }
 
 .anomaly-content .scrollable-area {
-	height: 638px;
+	height: 541px;
 }
 
 .anomaly-view {
 	overflow: hidden;
 	height: 100%;
 	position: relative;
-	overflow-x:scroll;
+/*	overflow-x:scroll;*/
 }
 
 .single-box img {
@@ -1224,6 +1224,11 @@ table.heading td:last-child {
 	margin: 0 -1px -1px 0;
 }
 
+.filters-box img {
+	margin: 10px 0;
+	cursor: pointer;
+}
+
 .filters-list {
 	list-style: none;
 	margin: 0;
@@ -1623,7 +1628,7 @@ ul.anomaly-row {
 }
 
 .event-category .badge {
-	margin: 0 0 0 6px;
+	margin: 0 0 0 10px;
 }
 
 .login-modal {
@@ -1644,4 +1649,75 @@ ul.anomaly-row {
 .login-middle {
 	display: table-cell;
   vertical-align: middle;
+}
+
+.images-container {
+	height: 658px;
+}
+
+.pagination>li>a, 
+.pagination>li>span,
+.pagination>.disabled>a, 
+.pagination>.disabled>span {
+	color: #c5c6c6;
+	background-color: #222326;
+}
+
+.pagination>.active>a, 
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover {
+    color: #000;
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.pagination>li>a:focus, 
+.pagination>li>a:hover, 
+.pagination>li>span:focus, 
+.pagination>li>span:hover {
+    color: #000;
+}
+
+.panel {
+  background-color: #222326;
+  border-color: #c5c6c6;
+}
+
+.panel-info>.panel-heading, .login-button {
+    color: #000;
+    background-color: #c5c6c6;
+    border-color: #c5c6c6;
+}
+
+.login-button:hover, 
+.login-button:focus,
+.login-button:active {
+	color: #000;
+	background-color: #fff;
+	border-color: #fff;
+}
+
+.login-mainbox {
+	margin-top: 50px;
+}
+
+.form-container {
+	padding-top: 30px;
+}
+
+.form-container-input {
+	margin-bottom: 25px;
+}
+
+.form-container-button {
+	margin-bottom: 10px;
+}
+
+.img-new-event {
+	width: 25px;
+	height: 25px;
+	margin: -4px 0 0 4px;
 }

@@ -14,34 +14,28 @@
 	<div class="login-modal" ng-hide="user.response == 'true'">
 		<div class="login-container">
       <div class="login-middle">    
-        <div style="margin-top:50px;" class="login-mainbox col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+        <div class="login-mainbox col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
           <div class="panel panel-info" >
             <div class="panel-heading">
               <div class="panel-title">Sign In</div>                        
             </div>     
-
-            <div style="padding-top:30px" class="panel-body" >
-              
+            <div class="panel-body form-container">
               <form class="form-horizontal" name="form" role="form" ng-submit="signin()">
-                
-                <div style="margin-bottom: 25px" class="input-group">
+                <div class="input-group form-container-input">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                   <input ng-model="username" type="text" class="form-control" name="username" value="" placeholder="User">                                        
                 </div>
-                <div style="margin-bottom: 25px" class="input-group">
+                <div class="input-group form-container-input">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   <input ng-model="password" type="password" class="form-control" name="password" placeholder="Password">
                 </div>
-                <div style="margin-top:10px" class="input-group col-xs-12">
+                <div class="input-group col-xs-12 form-container-button">
                   <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
-                    <input type="submit" class="btn btn-success btn-block" value="Login"/>
+                    <input type="submit" class="btn btn-block login-button" value="Login"/>
                   </div>
                 </div>
-
               </form>     
-
             </div>
-
           </div>  
         </div>
       </div>
@@ -66,6 +60,7 @@
 					</td>
 					<td>
 						<div class="filters-box">
+							<img src="images/logo-elbit.png" alt="">
 						</div>
 					</td>
 				</tr>
@@ -83,7 +78,7 @@
 										<i class="i-person" ng-show="stream.detectedPerson==true" ></i>
 									</div>
 									<div class="cam-info">
-										<span class="source" >{{stream.name}}<span class="badge progress-bar-warning">{{stream.anomaly}}</span></span>
+										<span class="source" >{{stream.name}}<span><img class="img-new-event" src="images/new-icon.png" ng-show="stream.anomaly"></span></span>
 									</div>
 								</div>
 							</a>
@@ -120,44 +115,50 @@
 							</div>
 						</div>
 					</div>
+					<div class="anomaly-holder">
+						<ul class="anomaly-list">
+							<li>
+								<span class="anomaly-row">
+									<span class="item">EVENT TYPE</span>
+									<span class="item">PREVIEW</span>
+								</span>
+							</li>
+						</ul>
+					</div>
 					<div class="scrollable-area">
 						<div class="anomaly-holder">
 							<ul class="anomaly-list">
 								<li>
-									<span class="anomaly-row">
-										<span class="item">EVENT TYPE</span>
-										<span class="item">PREVIEW</span>
-									</span>
 								</li>
 								<li>
 
 									<div class="anomaly-row event-category" ng-click="toggleDropDown('showAnomaliesEvents')">
 										<span class="row">
-											<span class="col-md-10"><span>ANOMALY</span><span class="caret"></span></span>
-											<span class="col-md-2"><span class="badge progress-bar-warning">{{findEventType('anomalies')}}</span></span>
+											<span class="col-md-9"><span>ANOMALY</span><span class="caret"></span></span>
+											<span class="col-md-3 text-center"><span class="badge progress-bar-warning">{{findEventType('anomalies')}}</span></span>
 										</span>
 									</div>
 									<ul class="anomaly-row" ng-repeat="item in uniqAnomaliesByEventType" ng-show="showAnomaliesEvents && {{uniqAnomaliesByEventType.length > 0}}">
 										<li class="event-type">
 											<span class="row">
 												<a href="#" ng-click="getAnomaliesByEventType('anomalies', item)">
-													<span class="col-md-10">{{item}}</span>
-													<span class="col-md-2"><span class="badge">{{findEventType('anomalies', item)}}</span></span>
+													<span class="col-md-9">{{item}}</span>
+													<span class="col-md-3 text-center"><span class="badge">{{findEventType('anomalies', item)}}</span></span>
 												</a>
 											</span>
 										</li>
 									</ul>
 
 									<div class="anomaly-row event-category" ng-click="toggleDropDown('showAllEvents')">
-										<span class="col-md-10"><span>ALL EVENTS</span><span class="caret"></span></span>
-										<span class="col-md-2"><span class="badge progress-bar-warning">{{findEventType('allEvents')}}</span></span>
+										<span class="col-md-9"><span>ALL EVENTS</span><span class="caret"></span></span>
+										<span class="col-md-3 text-center"><span class="badge progress-bar-warning">{{findEventType('allEvents')}}</span></span>
 									</div>
 									<ul class="anomaly-row" ng-repeat="item in uniqAllEventsByEventType" ng-show="showAllEvents && {{uniqAllEventsByEventType.length > 0}}">
 										<li class="event-type">
 											<span class="row">
 												<a href="#" ng-click="getAnomaliesByEventType('allEvents', item)">
-													<span class="col-md-10">{{item}}</span>
-													<span class="col-md-2"><span class="badge">{{findEventType('allEvents', item)}}</span></span>
+													<span class="col-md-9">{{item}}</span>
+													<span class="col-md-3 text-center"><span class="badge">{{findEventType('allEvents', item)}}</span></span>
 												</a>
 											</span>
 										</li>
@@ -169,28 +170,33 @@
 					</div>
 				</div>
 				<div class="anomaly-view">
-					<div class="col-md-4" ng-repeat="item in renderedEvents">
-						<img class="img-responsive" ng-src="{{item.img}}">
-						<svg-circle index={{item}}></svg-circle>
-					</div>
-					<div class="no-anomaly" ng-show="$scope.image">
-						<div class="no-anomaly-holder">
-							<span class="message">NO NEW ANOMALIES for <br>this webcam TODAY</span>
-							<span class="add-info">You can still view archived anomalies for the previous days</span>
+
+					<div class="images-container">
+						<div class="col-md-4" ng-repeat="item in renderedEvents">
+							<img class="img-responsive" ng-src="{{item.img}}">
+							<svg-circle index={{item}}></svg-circle>
+						</div>
+						<div class="no-anomaly" ng-show="$scope.image">
+							<div class="no-anomaly-holder">
+								<span class="message">NO NEW ANOMALIES for <br>this webcam TODAY</span>
+								<span class="add-info">You can still view archived anomalies for the previous days</span>
+							</div>
 						</div>
 					</div>
 
 					<div class="col-md-6 col-md-offset-3">
-    				<ul uib-pagination 
-    						items-per-page="itemPerPage"
-    						total-items="bigTotalItems" 
-    						ng-model="bigCurrentPage" 
-    						max-size="maxSize" 
-    						class="pagination-sm" 
-    						boundary-link-numbers="true"
-    						ng-change="goToPage()"
-    						>
-    				</ul>
+						<div class="text-center">
+	    				<ul uib-pagination 
+	    						items-per-page="itemPerPage"
+	    						total-items="bigTotalItems" 
+	    						ng-model="currentPage"
+	    						max-size="paginationMaxSize" 
+	    						class="pagination-sm" 
+	    						boundary-link-numbers="true"
+	    						ng-change="goToPage()"
+	    						>
+	    				</ul>
+    				</div>
 					</div>
 
 				</div>
