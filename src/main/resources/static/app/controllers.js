@@ -160,7 +160,7 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', 
     $scope.goToPage = function(data) {
         var startAt = ($scope.currentPage - 1) * $scope.itemPerPage;
         var endOn = startAt + $scope.itemPerPage;
-        $scope.bigTotalItems = data.data.length;
+        $scope.bigTotalItems = $scope.selectedEvents.length;
         $scope.renderedEvents = $scope.selectedEvents.slice(startAt, endOn);
         return data;
     };
