@@ -37,6 +37,7 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', 
     $(window).on('fancyboxClosed', function(){
         $scope.dateFilter.startdate = '';
         $scope.dateFilter.enddate = '';
+        $scope.renderedEvents = [];
         $scope.showAnomaliesEvents = false;
         $scope.showAllEvents = false;
     });
