@@ -7,6 +7,7 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
     $scope.selectedStream = {};
     $scope.selectedEvents = [];
     $scope.renderedEvents = [];
+    $scope.dataForTable = [];
     $scope.dateFilter = {};
     $scope.uniqAnomaliesByEventType = [];
     $scope.uniqAllEventsByEventType = [];
@@ -171,6 +172,18 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
         $scope.bigTotalItems = $scope.selectedEvents.length;
         $scope.renderedEvents = $scope.selectedEvents.slice(startAt, endOn);
         return data;
+    };
+
+    $scope.getDataForTable = function() {
+        var id = $scope.user.id;
+        $scope.server
+            .getDataForTable(id)
+            .then($scope.renderDataToTable, $scope.getError);
+    };
+
+    $scope.renderDataToTable = function(data) {
+        $scope.dataForTable = data.data;
+        $scope.titlesForTable = Object.keys(data.data[0]);
     };
     
 }]);

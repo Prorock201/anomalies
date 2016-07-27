@@ -42,5 +42,12 @@ app.service('Server', ['$http', function ($http) {
             params: {streamid: streamId, objectid: objectId, from: startDate, to: endDate}
         });
     };
+    this.getDataForTable = function (id) {
+        return this.http({
+            url: localUrl + '/eyecatcher/getAnomalyConfiguration', 
+            method: "GET", 
+            params: {userid: id}
+        });  
+    };
 
 }]);

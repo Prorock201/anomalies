@@ -1730,3 +1730,24 @@ ul.anomaly-row {
 .init-image img.img-responsive {
 	height: 100%;
 }
+
+.table-modal {
+	width: 1000px;
+	height: 100%;
+	margin: 50px 50px;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #c5c6c6;
+  color: #000;
+}
+
+.table.table-striped > tbody > tr:hover {
+	background-color: #f5f5f5;
+	color: #000;
+}
+
+.olympic-logo {
+	width: 30px;
+	height: 30px;
+}

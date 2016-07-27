@@ -57,10 +57,12 @@
 							<dt>{{streams.summaryLast.substring(0,12)}}</dt>
 								<dd>{{streams.summaryLast.substring(13)}}</dd>
 						</dl>
+						<a ng-href="#table" class="lightbox" ng-click="getDataForTable()">TABLE</a>
 					</td>
 					<td>
 						<div class="filters-box">
 							<img src="images/logo-elbit.png" alt="">
+							<img class="olympic-logo" src="images/logo-olympics.png" alt="">
 						</div>
 					</td>
 				</tr>
@@ -205,6 +207,24 @@
 
 				</div>
 			</div>
+		</div>
+
+		<div id="table" class="lightbox table-modal">
+			<table class="table table-hover table-bordered table-striped">
+				<thead>
+					<tr class="text-center">
+						<td ng-repeat="title in titlesForTable">{{title}}</td>
+					</tr>
+				</thead>
+        <tbody>
+        	<tr class="text-center" ng-repeat="item in dataForTable">
+            <td>{{item.stream}}</td>
+            <td>{{item.time}}</td>
+            <td>{{item.object}}</td>
+            <td>{{item.location}}</td>
+       		</tr>
+        </tbody>
+    	</table>
 		</div>
 
 	</div>
