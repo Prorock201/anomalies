@@ -20,7 +20,7 @@
               <div class="panel-title">Sign In</div>                        
             </div>     
             <div class="panel-body form-container">
-              <form class="form-horizontal" name="form" role="form" ng-submit="signin()">
+              <form class="form-horizontal" name="form" role="form" ng-submit="loginIn()">
                 <div class="input-group form-container-input">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                   <input ng-model="username" type="text" class="form-control" name="username" value="" placeholder="User">                                        
@@ -176,6 +176,9 @@
 							<img class="img-responsive" ng-src="{{item.img}}">
 							<svg-circle index={{item}}></svg-circle>
 						</div>
+<!-- 						<div class="col-md-4" ng-show="renderedEvents.length">
+							<img class="img-responsive" ng-src="{{item.img}}">
+						</div> -->
 						<div class="no-anomaly" ng-show="$scope.image">
 							<div class="no-anomaly-holder">
 								<span class="message">NO NEW ANOMALIES for <br>this webcam TODAY</span>

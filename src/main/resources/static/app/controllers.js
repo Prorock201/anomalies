@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', '$http', function($scope,Stream, UpdateStream, GetById, $http) {
+app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', 'Server', '$interval', '$parse', '$http', function($scope,Stream, UpdateStream, GetById, Server, $interval, $parse, $http) {
 
     $scope.streams = [];
     $scope.selectedStream = {};
@@ -15,6 +15,10 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', 
     $scope.paginationMaxSize = 5;
     $scope.currentPage = 1;
     $scope.bigTotalItems = 0;
+    $scope.server = Server;
+    $scope.$interval = $interval;
+    $scope.$parse = $parse;
+    $scope.autoRefreshDelay = 20000;
     $scope.allAnomalies = {
         anomalies: [],
         allEvents: [],
@@ -38,28 +42,38 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', 
         $scope.dateFilter.startdate = '';
         $scope.dateFilter.enddate = '';
         $scope.renderedEvents = [];
+        $scope.currentPage = 1;
         $scope.showAnomaliesEvents = false;
         $scope.showAllEvents = false;
     });
 
-    $scope.signin = function() {
-        $http({
-            url: localUrl + '/eyecatcher/login',
-            method: "POST",
-            data: {username: $scope.username, password: $scope.password},
-        })
-        .then($scope.sendStreamsRequest)
-        .then($scope.getStreams)
-        .then(null, $scope.getError);
+    $scope.loginIn = function() {
+        $scope.server
+            .loginIn($scope.username, $scope.password)
+            .then($scope.sendStreamsRequest)
+            .then($scope.startAutoRefresh);
+    };
+
+    $scope.startAutoRefresh = function(data) {
+        if (data) {
+            $scope.$interval($scope.sendStreamsRequest.bind(null, data), $scope.autoRefreshDelay);
+        } else {
+            var error = {};
+            error.statusText = 'You have to login first';
+            $scope.getError(error);
+        }
     };
 
     $scope.sendStreamsRequest = function(data) {
-        $scope.user = data.data;
-        return $http({
-            url: localUrl + '/eyecatcher/streams',
-            method: "GET",
-            params: {userid: $scope.user.id},
-        })
+        $scope.user = $parse('data.id')(data) ? data.data : $scope.user;
+        if ($scope.user.id != 0) {
+            return $scope.server
+                    .getStreams($scope.user.id)
+                    .then($scope.getStreams)
+                    .then(null, $scope.getError);
+        } else {
+            return false;
+        }
     };
 
     $scope.getStreams = function(data) {
@@ -69,8 +83,9 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', 
 
     $scope.selectStream = function (stream) {
         $scope.selectedStream = stream;
-        $scope.selectedEvents = stream.init;
-        $scope.getStreamObject(stream.id)
+        // $scope.selectedEvents = stream.init;
+        $scope
+            .getStreamObject(stream.id)
             .then($scope.filterResponseData)
             .then(null, $scope.getError);
     };
@@ -90,11 +105,7 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', 
     };
 
     $scope.getStreamObject = function(id) {
-        return $http({
-            url: localUrl + '/eyecatcher/getStreamObjectSummaryByStreamId',
-            method: "GET",
-            params: {streamid: id}
-        });
+        return $scope.server.getStreamObject(id);
     };
 
     $scope.filterResponseData = function(data) {
@@ -123,33 +134,28 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', 
     };
     
     $scope.getAnomaliesByEventType = function(array, item) {
-        $scope.currentPage = 1;
         var objectId = _.find($scope.allAnomalies[array], {name: item}).id;
         var startDate = new Date($scope.dateFilter.startdate).getDate();
         var endDate = new Date($scope.dateFilter.enddate).getDate();
+        var streamId = $scope.selectedStream.id;
 
         if ($scope.dateFilter.startdate && $scope.dateFilter.enddate) {
-            $http({
-                url: localUrl + '/eyecatcher/getStreamObjectSummaryByStreamidAndObjectIdByDate',
-                method: "GET",
-                params: {streamid:  $scope.selectedStream.id, objectid: objectId, from: startDate, to: endDate}
-            })
-            .then($scope.selectEvents)
-            .then($scope.goToPage)
-            .then(null, $scope.getError);
+            $scope.server
+                .getStreamObjectIdByDate(streamId, objectId, startDate, endDate)
+                .then($scope.selectEvents)
+                .then($scope.goToPage)
+                .then(null, $scope.getError);
         } else {
-            $http({
-                url: localUrl + '/eyecatcher/getStreamObjectSummaryByStreamIdAndObjectId',
-                method: "GET",
-                params: {streamid:  $scope.selectedStream.id, objectid: objectId}
-            })
-            .then($scope.selectEvents)
-            .then($scope.goToPage)
-            .then(null, $scope.getError);
+            $scope.server
+                .getStreamObjectId(streamId, objectId)
+                .then($scope.selectEvents)
+                .then($scope.goToPage)
+                .then(null, $scope.getError);
         };
     };
 
     $scope.selectEvents = function(data) {
+        $scope.currentPage = 1;
         $scope.selectedEvents = data.data;
         return data;
     };
