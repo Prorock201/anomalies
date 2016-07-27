@@ -176,9 +176,9 @@
 							<img class="img-responsive" ng-src="{{item.img}}">
 							<svg-circle index={{item}}></svg-circle>
 						</div>
-<!-- 						<div class="col-md-4" ng-show="renderedEvents.length">
-							<img class="img-responsive" ng-src="{{item.img}}">
-						</div> -->
+						<div class="col-md-12 init-image" ng-show="renderedEvents.length == 0">
+							<img class="img-responsive" ng-src="{{image}}">
+						</div>
 						<div class="no-anomaly" ng-show="$scope.image">
 							<div class="no-anomaly-holder">
 								<span class="message">NO NEW ANOMALIES for <br>this webcam TODAY</span>
@@ -197,6 +197,7 @@
 	    						class="pagination-sm" 
 	    						boundary-link-numbers="true"
 	    						ng-change="goToPage()"
+	    						ng-hide="renderedEvents.length == 0"
 	    						>
 	    				</ul>
     				</div>

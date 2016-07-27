@@ -1,8 +1,9 @@
 'use strict';
 
-app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', 'Server', '$interval', '$parse', '$http', function($scope,Stream, UpdateStream, GetById, Server, $interval, $parse, $http) {
+app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', function($scope, Server, $interval, $parse) {
 
     $scope.streams = [];
+    $scope.image = '';
     $scope.selectedStream = {};
     $scope.selectedEvents = [];
     $scope.renderedEvents = [];
@@ -83,7 +84,7 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', 
 
     $scope.selectStream = function (stream) {
         $scope.selectedStream = stream;
-        // $scope.selectedEvents = stream.init;
+        $scope.image = stream.image
         $scope
             .getStreamObject(stream.id)
             .then($scope.filterResponseData)
@@ -172,37 +173,4 @@ app.controller('AppController', ['$scope', 'Stream', 'UpdateStream', 'GetById', 
         return data;
     };
     
-
-}]);
-
-app.controller('ObjectsController', ['$scope', 'Objects' ,'$http', function($scope, Objects, $http) {
-
-    $scope.selected = [];
-    $scope.objects = [];
-
-    Objects.query(function(response) {
-        $scope.objects = response ? response : [];
-    });
-
-    $scope.updateSelection = function($event, id) {
-
-        var checkbox = $event.target;
-        var action = (checkbox.checked ? 'add' : 'remove');
-        var active = 1;
-        if (action == 'remove') active = 0;
-
-        $http({
-            url: 'http://api.leadspotting.com/LSAPI/LeadSpottingApi.jsp',
-            method: "POST",
-            params: {Command: 'updateStreamObject', Objectid: id, Active: active}
-        }).then(function (response) {
-                console.log("sucess")
-                console.log(response)
-            },
-            function (response) {
-                console.log("failed")
-            });
-
-    };
-
 }]);

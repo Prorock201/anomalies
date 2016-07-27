@@ -1721,3 +1721,12 @@ ul.anomaly-row {
 	height: 25px;
 	margin: -4px 0 0 4px;
 }
+
+.init-image {
+	margin: 45px 0 0 0;
+	height: 100%;
+}
+
+.init-image img.img-responsive {
+	height: 100%;
+}
