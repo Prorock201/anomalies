@@ -51,13 +51,15 @@
 						<div class="logo"><a href="#"><img src="images/logo.png" height="21" width="186" alt="The Eyecatcher"></a></div>
 					</td>
 					<td>
+						<div>
+							<a ng-href="#table" class="lightbox settings-button" ng-click="getDataForTable()">Settings</a>
+						</div>
 						<dl class="info">
 							<dt>{{streams.summaryToday.substring(0,5)}}</dt>
 								<dd>{{streams.summaryToday.substring(6)}}</dd>
 							<dt>{{streams.summaryLast.substring(0,12)}}</dt>
 								<dd>{{streams.summaryLast.substring(13)}}</dd>
 						</dl>
-						<a ng-href="#table" class="lightbox" ng-click="getDataForTable()">TABLE</a>
 					</td>
 					<td>
 						<div class="filters-box col-md-12">
@@ -240,7 +242,7 @@
 	<script type="text/javascript" src="controllers.js"></script>
 	<script type="text/javascript" src="components/datepicker/datepicker.directive.js"></script>
 	<script type="text/javascript" src="directives/svgCircle.directive.js"></script>
-	<script type="text/javascript" src="filterDate.filter.js"></script>
+	<script type="text/javascript" src="filters/filterDate.filter.js"></script>
 	<script type="text/javascript" src="services.js"></script>
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script src="js/jquery.fancybox.js"></script>

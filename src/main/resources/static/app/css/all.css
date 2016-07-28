@@ -1648,6 +1648,7 @@ ul.anomaly-row {
 .login-container {
   display: table;
   height: 100vh;
+  width: 100%;
 }
 .login-middle {
 	display: table-cell;
@@ -1750,7 +1751,7 @@ ul.anomaly-row {
 	color: #000;
 }
 
-/*.olympic-logo {
-	width: 30px;
-	height: 30px;
-}*/
+.settings-button {
+	color: #dfdfdf;
+	text-decoration: none;
+}

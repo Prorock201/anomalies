@@ -8,7 +8,6 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
     $scope.selectedEvents = [];
     $scope.renderedEvents = [];
     $scope.dataForTable = [];
-    $scope.dateFilter = {};
     $scope.uniqAnomaliesByEventType = [];
     $scope.uniqAllEventsByEventType = [];
     $scope.showAnomaliesEvents = false;
@@ -21,6 +20,10 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
     $scope.$interval = $interval;
     $scope.$parse = $parse;
     $scope.autoRefreshDelay = 20000;
+    $scope.dateFilter = {
+        startdate: '',
+        enddate: '',
+    };
     $scope.allAnomalies = {
         anomalies: [],
         allEvents: [],
@@ -28,6 +31,19 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
     $scope.user = {
         response: false,
         id: 0
+    };
+
+    $scope.refreshModal = function() {
+        $scope.dateFilter.startdate = '';
+        $scope.dateFilter.enddate = '';
+        $scope.allAnomalies.anomalies = [];
+        $scope.allAnomalies.allEvents = [];
+        $scope.uniqAnomaliesByEventType = [];
+        $scope.uniqAllEventsByEventType = [];
+        $scope.renderedEvents = [];
+        $scope.currentPage = 1;
+        $scope.showAnomaliesEvents = false;
+        $scope.showAllEvents = false;
     };
 
     $scope.baseUrl = 'http://api.leadspotting.com';
@@ -40,13 +56,8 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
       } 
     }, true);
 
-    $(window).on('fancyboxClosed', function(){
-        $scope.dateFilter.startdate = '';
-        $scope.dateFilter.enddate = '';
-        $scope.renderedEvents = [];
-        $scope.currentPage = 1;
-        $scope.showAnomaliesEvents = false;
-        $scope.showAllEvents = false;
+    $(window).on('fancyboxClosed', function() {
+        $scope.refreshModal();
     });
 
     $scope.loginIn = function() {
@@ -60,9 +71,7 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
         if (data) {
             $scope.$interval($scope.sendStreamsRequest.bind(null, data), $scope.autoRefreshDelay);
         } else {
-            var error = {};
-            error.statusText = 'You have to login first';
-            $scope.getError(error);
+            $scope.getError();
         }
     };
 
@@ -163,7 +172,7 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
     };
 
     $scope.getError = function(data) {
-        console.log('ERROR!', data.statusText ? data.statusText : 'Something went wrong');
+        console.log('ERROR!', data && data.statusText ? data.statusText : 'Something went wrong');
     };
 
     $scope.goToPage = function(data) {
