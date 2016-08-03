@@ -1,7 +1,7 @@
 'use strict';
 
-var baseUrl = 'http://api.leadspotting.com';
-var localUrl = 'http://192.168.2.95:8080';
+var localUrl = 'http://api.leadspotting.com';
+// var localUrl = 'http://192.168.2.95:8080';
 
 app.service('Server', ['$http', function ($http) {
 

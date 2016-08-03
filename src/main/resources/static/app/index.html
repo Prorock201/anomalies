@@ -176,7 +176,7 @@
 				<div class="anomaly-view">
 
 					<div class="images-container">
-						<div class="col-md-4" ng-repeat="item in renderedEvents">
+						<div class="col-md-4" ng-repeat="item in renderedEvents" ng-click="zoomImage(item.img)">
 							<img class="img-responsive" ng-src="{{item.img}}">
 							<svg-circle index={{item}}></svg-circle>
 						</div>
@@ -227,6 +227,13 @@
        		</tr>
         </tbody>
     	</table>
+		</div>
+
+		<div class="overlay-zoom" ng-show="showZoomImage" ng-click="showZoomImage = false">
+			<div class="zoom-image-wrapper">
+				<img class="img-responsive" ng-src="{{zoomedImage}}">
+<!-- 				<a class="fancybox-close" href="#" ng-click="showZoomImage = false"></a> -->
+			</div>
 		</div>
 
 	</div>

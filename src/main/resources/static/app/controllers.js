@@ -10,8 +10,10 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
     $scope.dataForTable = [];
     $scope.uniqAnomaliesByEventType = [];
     $scope.uniqAllEventsByEventType = [];
+    $scope.zoomedImage = '';
     $scope.showAnomaliesEvents = false;
     $scope.showAllEvents = false;
+    $scope.showZoomImage = false;
     $scope.itemPerPage = 9;
     $scope.paginationMaxSize = 5;
     $scope.currentPage = 1;
@@ -33,6 +35,9 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
         id: 0
     };
 
+    $scope.localUrl = 'http://api.leadspotting.com';
+    // $scope.localUrl = 'http://192.168.2.95:8080';
+
     $scope.refreshModal = function() {
         $scope.dateFilter.startdate = '';
         $scope.dateFilter.enddate = '';
@@ -41,13 +46,12 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
         $scope.uniqAnomaliesByEventType = [];
         $scope.uniqAllEventsByEventType = [];
         $scope.renderedEvents = [];
+        $scope.zoomedImage = '';
         $scope.currentPage = 1;
         $scope.showAnomaliesEvents = false;
         $scope.showAllEvents = false;
+        $scope.showZoomImage = false;
     };
-
-    $scope.baseUrl = 'http://api.leadspotting.com';
-    $scope.localUrl = 'http://192.168.2.95:8080';
 
     $scope.$watch('dateFilter', function() {
       if (!$scope.dateFilter.startdate) return;
@@ -193,6 +197,11 @@ app.controller('AppController', ['$scope', 'Server', '$interval', '$parse', func
     $scope.renderDataToTable = function(data) {
         $scope.dataForTable = data.data;
         $scope.titlesForTable = Object.keys(data.data[0]);
+    };
+
+    $scope.zoomImage = function(image) {
+        $scope.zoomedImage = image;
+        $scope.showZoomImage = true;
     };
     
 }]);
